@@ -16,8 +16,8 @@
 	li a0,0x38383838 # green
 	jal PAINT_SCREEN
 	jal SWAP_FRAMES
-	j QUIT
-
+	j INIT
+	
 REFRESH_BACK_BUFFER_END:
 	li t0,0x12C00 # Hardcoded number of pixels
 	mv s2,s1
@@ -47,12 +47,6 @@ SWAP_FRAMES:
 	mv s1,s0
 	mv s0,t0
 	
-	# Move ra to t1 to let REFRESH_BACK_BUFFER_END use it
-	# Use t1 because REFRESH_BACK_BUFFER_END uses t0
-	mv t1,ra
-	jal REFRESH_BACK_BUFFER_END
+	# REFRESH_BACK_BUFFER_END uses t0
+	jal t1,REFRESH_BACK_BUFFER_END
 	jr t1
-
-QUIT:
-	li a7,10
-	ecall
