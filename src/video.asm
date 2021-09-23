@@ -1,28 +1,24 @@
 .text
+INIT_VIDEO:
 	# On init, register names correlate to frame numbers,
 	# but that won't always be the case.
 	li s0,0xFF000000 # Front buffer: for display ONLY
 	li s1,0xFF100000 # Back buffer: paint here!
+	mv t1,ra
 	jal REFRESH_BACK_BUFFER_END # s2 = back buffer end address
+	mv ra,t1
 	li s3,0xFF200604 # s3 = current frame number (0 or 1)
 	
 	# Force start on frame 0
 	li t0,0
 	sw t0,0(s3)
-	
-	li a0,0x07070707 # red
-	jal PAINT_SCREEN
-	jal SWAP_FRAMES
-	li a0,0x38383838 # green
-	jal PAINT_SCREEN
-	jal SWAP_FRAMES
-	j INIT
-	
+	ret
+
 REFRESH_BACK_BUFFER_END:
 	li t0,0x12C00 # Hardcoded number of pixels
 	mv s2,s1
 	add s2,s2,t0
-	jr ra
+	ret
 
 PAINT_SCREEN:
 	# a0 = 8-bit RGB code to paint with
@@ -34,7 +30,7 @@ PAINT_SCREEN:
 		addi t0,t0,4
 		j WHILE
 	DONE:
-		jr ra
+		ret
 
 SWAP_FRAMES:
 	# Swap current frame
@@ -47,6 +43,7 @@ SWAP_FRAMES:
 	mv s1,s0
 	mv s0,t0
 	
-	# REFRESH_BACK_BUFFER_END uses t0
-	jal t1,REFRESH_BACK_BUFFER_END
-	jr t1
+	mv t1,ra # REFRESH_BACK_BUFFER_END uses t0, so we store our ra in t1
+	jal REFRESH_BACK_BUFFER_END
+	mv ra,t1
+	ret
