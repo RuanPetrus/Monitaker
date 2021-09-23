@@ -16,7 +16,7 @@
 	#Music label: .word MUSIC_NOTES, music_num, note_conter, last_played, last_duration, instru_num, volume_num
 
 #BACK GROUND:	
-M_BG:		.word M_BG_NOTES, 63, 0, 0, 0, 24, 127
+M_BG:		.word M_BG_NOTES, 63, 0, 0, 0, 7, 127
 
 #SOUND EFFECTS:
 M_TESTE:	.word M_TESTE_NOTES, 13, 0, 0, 0, 24, 127
