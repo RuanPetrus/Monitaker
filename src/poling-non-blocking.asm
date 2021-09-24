@@ -51,17 +51,22 @@ UP:
 	li a7 4
 	ecall
 	jr a6
-DOWN:
+DOWN:	
+	la t0, PLAYER_POSITION
+	lh t1, 2(t0)
+	addi t1, t1, 28
+	sh t1, 2(t0)
+	
 	la a0 Click_S
 	li a7 4
 	ecall
 	jr a6
-RIGHT:
+RIGHT:	
 	la a0 Click_D
 	li a7 4
 	ecall
 	jr a6
-MANHA:	
+MANHA:		
 	la s4, M_TESTE
 	la a0 manha
 	li a7 4
