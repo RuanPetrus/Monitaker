@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
         exit(1);
     }
 
-    sprintf(name, "%s.bmp", argv[1]);
+    sprintf(name, "%s", argv[1]);
     readBmp(name);
 
     printf("size:%d x %d\n", width, height);
