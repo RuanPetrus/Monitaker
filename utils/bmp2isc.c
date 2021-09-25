@@ -11,7 +11,7 @@ dados Marcus Vinicius Lamar - 27/03/2019 2019-1
 #include <stdio.h>
 #include <stdlib.h>
 
-static unsigned char *texels; // Sempre ensinamos a voc�s a n�o usar vari�veis globais...
+static unsigned char *texels;
 static int width, height;
 
 void readBmp(char *filename) {
@@ -73,7 +73,6 @@ void readBmp(char *filename) {
 
 int main(int argc, char **argv) {
 
-    // FILE *aout, *aoutbin;
     FILE *aouts; /* the bitmap file 24 bits */
     char name[30];
     int i, j, k, index;
@@ -91,28 +90,8 @@ int main(int argc, char **argv) {
 
     printf("size:%d x %d\n", width, height);
 
-    /*    printf("\nMatrix = \n");
-        for(i=0;i<10;i++)
-        {
-            for(j=0;j<10;j++)
-            {
-                index = (i * width * 3) + (j);
-                printf("%02X%02X%02X\t",texels[index],texels[index+1],texels[index+2]);
-            }
-            printf("\n");
-        }*/
-
-    //    sprintf(name,"%s.mif",argv[1]);
-    //   aout=fopen(name,"w");
-
-    //    sprintf(name,"%s.bin",argv[1]);
-    //    aoutbin=fopen(name,"wb");
-
     sprintf(name, "%s.s", argv[1]);
     aouts = fopen(name, "w");
-
-    //   fprintf(aout,"DEPTH = %d;\nWIDTH = 32;\nADDRESS_RADIX =
-    //   HEX;\nDATA_RADIX = HEX;\nCONTENT\nBEGIN\n",(width>>2)*height);
 
     fprintf(aouts, "%s: .word %d, %d\n.byte ", argv[1], width, height);
 
@@ -121,11 +100,9 @@ int main(int argc, char **argv) {
     unsigned char hex, rq, bq, gq;
 
     for (i = 0; i < height; i++) {
-        //       fprintf(aout,"%05X : ",cont);
         for (j = 0; j < width; j++) {
             hexi = 0;
-            //for (k = 0; k < 4; k++) {
-                index = ((height - 1 - i) * width + (j /*  + k */)) * 3;
+                index = ((height - 1 - i) * width + j) * 3;
                 r = texels[index + 0];
                 g = texels[index + 1];
                 b = texels[index + 2];
@@ -134,42 +111,21 @@ int main(int argc, char **argv) {
                 gq = (unsigned char)round(7.0 * (float)g / (255.0));
                 bq = (unsigned char)round(3.0 * (float)b / (255.0));
                 hex = bq << 6 | gq << 3 | rq;
-                hexi = hexi | (unsigned int)(hex << (/* k * */ 8));
-                /* if(cont<10) */ //printf("HEX=%d %d %d : %02X : %08X\n",bq,gq,rq,hex,hexi);
+                hexi = hexi | (unsigned int)(hex << 8);
 
-                if (hex == 0) {
-                    //    fprintf(aout,"00");
+                if (hex == 0)
                     fprintf(aouts, "0");
-                } else {
-                    //    fprintf(aout,"%02X",hex);
+                else
                     fprintf(aouts, "%d", hex);
-                }
 
-                if ((j/*  + k */) == width - 1) {
-                    // fprintf(aout,";\n");
+                if (j == width - 1)
                     fprintf(aouts, ",\n");
-                } else {
-                    // if(k==3) fprintf(aout," ");
+                else
                     fprintf(aouts, ",");
-                }
-                //            fwrite(&hex,1,sizeof(unsigned char),aoutbin);
-            //}
-
-            //          fprintf(aout,"%08X",hexi);
-
-            /*          if((j+k)==width)
-                          fprintf(aout,";\n");
-                      else
-                          fprintf(aout," ");
-            */
-           /*  cont++; */
         }
     }
-    //    fprintf(aout,"\nEND;\n");
     fprintf(aouts, "\n\n");
-    //    fclose(aout);
     fclose(aouts);
-    //    fclose(aoutbin);
 
     return (0);
 }
