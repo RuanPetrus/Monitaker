@@ -19,7 +19,7 @@ void readBmp(char *filename) {
     fd = fopen(filename, "rb");
     if (fd == NULL) {
         printf("Error: fopen failed\n");
-        return;
+	exit(1);
     }
 
     unsigned char header[54];
