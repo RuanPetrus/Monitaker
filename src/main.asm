@@ -9,11 +9,13 @@ INIT:
 	li a2, 0
 	call RENDER
 	call RENDER
+	
 	#Music initialization
 	la t0, D_BG_MUSIC
 	la t1, M_BG	
 	sw t1, 0(t0)	
 	jal a0, ST_MUS
+	
 	#Game LOOP
 G_LOOP:	jal a6,KEY1
 	la a0, player

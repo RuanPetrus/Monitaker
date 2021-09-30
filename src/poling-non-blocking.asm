@@ -40,11 +40,19 @@ WASD: 	# Se o conteï¿½do de t2 for igual a um dos ASCII acima, a condicional irï
 	beq t2 t4 RIGHT
 	beq t2 t5 MANHA
 	jr a6 
-	
-LEFT: #A seguir, os procedimentos que iremos definir, coloquei print para testar o funicionamento
+
+#A seguir, os procedimentos que iremos definir, coloquei print para testar o funicionamento	
+LEFT:
 	la a0 Click_A
 	li a7 4
 	ecall
+	li a0 -1
+	jr a6
+RIGHT:	
+	la a0 Click_D
+	li a7 4
+	ecall
+	li a0 1
 	jr a6
 UP:
 	la a0 Click_W
@@ -58,11 +66,6 @@ DOWN:
 	sh t1, 2(t0)
 	
 	la a0 Click_S
-	li a7 4
-	ecall
-	jr a6
-RIGHT:	
-	la a0 Click_D
 	li a7 4
 	ecall
 	jr a6
