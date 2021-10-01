@@ -1,6 +1,6 @@
 .text
 #################################################
-#	a0 = endereço imagem			#
+#	a0 = endereco da imagem			#
 #	a1 = x					#
 #	a2 = y					#
 #################################################
@@ -45,9 +45,6 @@ P_LINHA:
 	mv t3,zero			# zera t3 (contador de coluna)
 	addi t2,t2,1			# incrementa contador de linha
 	bgt t5,t2,P_LINHA		# se altura > contador de linha, continue imprimindo
-	
-	mv t6, ra
-	call SWAP_FRAMES
-	mv ra, t6		
+		
 	ret				# retorna
 												

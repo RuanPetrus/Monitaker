@@ -19,7 +19,7 @@ KEY1:	li t1,0xFF200000		# carrega o endereï¿½o de controle do KDMMIO
 
 	li t1 0x61
 	blt t2 t1 MAIUSCULO 		# Verifica se ï¿½ maiusculo, se for, pula para correspondente
-	# ASCII de WASD em cada registrador	
+	# ASCII de WASD em cada registrador
   	li t0 0x77 			#w 
   	li t1 0x61			#a
   	li t3 0x73			#s
@@ -40,9 +40,12 @@ WASD: 	# Se o conteï¿½do de t2 for igual a um dos ASCII acima, a condicional irï
 	beq t2 t4 RIGHT
 	beq t2 t5 MANHA
 	jr a6 
-
 #A seguir, os procedimentos que iremos definir, coloquei print para testar o funicionamento	
 LEFT:
+	la t0, PLAYER_POSITION
+	lh t1, 0(t0)
+	addi t1,t1,-1
+	sh t1, 0(t0)
 	la a0 Click_A
 	li a7 4
 	ecall
@@ -55,6 +58,11 @@ RIGHT:
 	li a0 1
 	jr a6
 UP:
+	la t0, PLAYER_POSITION
+	lh t1, 2(t0)
+	addi t1,t1,-1
+	sh t1, 2(t0)
+	
 	la a0 Click_W
 	li a7 4
 	ecall
@@ -62,10 +70,20 @@ UP:
 DOWN:	
 	la t0, PLAYER_POSITION
 	lh t1, 2(t0)
-	addi t1, t1, 28
+	addi t1,t1,1
 	sh t1, 2(t0)
 	
 	la a0 Click_S
+	li a7 4
+	ecall
+	jr a6
+RIGHT:	
+	la t0, PLAYER_POSITION
+	lh t1, 0(t0)
+	addi t1,t1,1
+	sh t1, 0(t0)
+
+	la a0 Click_D
 	li a7 4
 	ecall
 	jr a6
