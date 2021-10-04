@@ -1,10 +1,18 @@
 .text
-KEY1:
-	li t1,0xFF200000        # carrega o endereco de controle do KDMMIO
-	lw t0,0(t1)            # Le bit de Controle Teclado
-	andi t0,t0,0x0001        # mascara o bit menos significativo
-	beq t0,zero,FIM              # Se nenhuma tecla pressionada, vá para FIM
-	lw t2,4(t1)              # t2 = valor da tecla teclada
+KEY1:	
+	csrr t1, time			# t1 = current time
+	sub t0, t1, s6
+	li t2, 1000
+	blt t0, t2, FIM
+	
+	li t1,0xFF200000        	# carrega o endereco de controle do KDMMIO
+	lw t0,0(t1)        		# Le bit de Controle Teclado
+	andi t0,t0,0x0001        	# mascara o bit menos significativo
+	beq t0,zero,FIM          	# Se nenhuma tecla pressionada, vá para FIM
+	
+	csrr s6, time			
+	
+	lw t2,4(t1)              	# t2 = valor da tecla teclada
 	# ASCII de WASD-P-R em cada registrador
 	li t3 0x77             #w
 	beq t2 t3 UP 
@@ -85,8 +93,9 @@ DOWN:
 	la a3 MATRIZ
 	la a4 area
 	j MOV_UD
-MANHA:		
-	jr a6
+MANHA:	
+	j M_LOOP	
+	#jr a6
 FIM: 	
 	jr a6
 RESET:
