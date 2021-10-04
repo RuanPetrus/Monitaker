@@ -6,6 +6,7 @@
 # s3 = current frame address
 # s4 = music address
 # s5 = turns
+# s6 = last input time
 
 # a5 = tmp
 
@@ -27,6 +28,7 @@ INIT:
 	# Movement initialization
 	la s5 N_MOV
 	lb s5 0(s5)	# s11 = numero de movimentos disponiveis
+	li s6, 0
 	# Game loop
 G_LOOP:
 	jal a6,KEY1
@@ -44,6 +46,10 @@ G_LOOP:
 	call DRAW_TILE
 	j G_LOOP
 
+M_LOOP: jal a6,KEY2		# le o teclado	blocking
+	j M_LOOP
+
+
 .include "tiles.asm"
 .include "buffer.asm"
 .include "render.asm"
@@ -51,6 +57,7 @@ G_LOOP:
 .include "movimentacao.asm"
 .include "mapa1.asm"
 .include "poling01.asm"
+.include "menu-blocking.asm"
 
 .data
 .include "../sprites/map.data"
