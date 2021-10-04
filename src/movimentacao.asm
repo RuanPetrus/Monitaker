@@ -1,14 +1,12 @@
-.include "mapa1.asm"
-.include "poling01.asm"
 .text
-	#a0= unidades a mover (negativo para esquerda(-1), positivo para direita(+1))
-	#a1= o que vai ser movido (1 para player, 2 para ar, 0 para chão e parede)
-	#a2= posicao do player (coluna, linha)
-	#a3= label matriz - para jogador não ultrapassar limites
-	#a4= tamanho da matriz do jogo (n_linhas, n_colunas)
+	# a0= unidades a mover (negativo para esquerda(-1), positivo para direita(+1))
+	# a1= o que vai ser movido (1 para player, 2 para ar, 0 para chï¿½o e parede)
+	# a2= posicao do player (coluna, linha)
+	# a3= label matriz - para jogador nï¿½o ultrapassar limites
+	# a4= tamanho da matriz do jogo (n_linhas, n_colunas)
 	
 	###### OBJETOS NA MATRIZ ######
-	# 	chão = 0		#
+	# 	chï¿½o = 0		#
 	# 	player = 1	#
 	# 	personagens = 2 	# 
 	# 	chaves = 3	#
@@ -27,26 +25,26 @@ MOV_UD:
 	#Verificacoess de limites de LINHAS da matriz:
 	bltz t1,FIM		#verifica se o destino for menor que 0, ou seja, nada: n move
 	lw t5,0(a4)		#t5 = numero de linhas
-	bge t1,t5,FIM		#verifica se a posição de destino(t1) é maior que o n° de linhas existentes e n move
-	#Origem:
+	bge t1,t5,FIM		#verifica se a posiï¿½ï¿½o de destino(t1) ï¿½ maior que o nï¿½ de linhas existentes e n move
+	# Origem:
 	lb t2,1(a2)		#Coluna Origem: t2 = indice da coluna onde o jogador esta
 	slli t2,t2,2		#t2 = t2 * 4, p/ encontrar a coluna na word
 	slli t3,t0,2		#t3 = indice da linha de origem * 4
 	add t3,t3,a3		#t3 = t3 + endereco da linha origem 
 	lw t3,0(t3)		#t3 = local do jogador
-	#Destino:
+	# Destino:
 	slli t4,t1,2		#t4 = indice linha destino*4
 	add t4,t4,a3		#t4 = endereco do destino na matriz
-	lw t4,0(t4)		#t4 = linha destino correta / carrega a word do endereço de destino
+	lw t4,0(t4)		#t4 = linha destino correta / carrega a word do endereï¿½o de destino
 	add t5,t2,t4		#t5 = endereco linha destino
 	lw t6,0(t5)		#t6 = objeto no endereco destino
 	
-	#Comparacoes de Colisoes Permitidas ou nao:
-	#Free: 
+	# Comparacoes de Colisoes Permitidas ou nao:
+	# Free: 
 	beq t6 zero MOV_UD_FREE	#Permite mover se tiver chao
 	li a0 5		# porta Aberta
 	beq t6 a0 MOV_UD_FREE	#Permite mover se tiver porta aberta
-	#Obstaculo: NAO MOVE
+	# Obstaculo: NAO MOVE
 	li a0 4		#Porta Fechada
 	beq t6 a0 FIM		# N move
 	li a0 8		#Parede
@@ -67,15 +65,15 @@ MOV_LR:
 	#Verificacoess de limites de COLUNAS da matriz:
 	bltz t1,FIM		#verifica se o destino for menor que 0, ou seja, nada: n move
 	lw t5,4(a4)		#t5 = quantidade de colunas na matriz
-	bge t1,t5,FIM		#verifica se a posição de destino(t1) é maior que o n° de coluna existentes: n move
+	bge t1,t5,FIM		#verifica se a posiï¿½ï¿½o de destino(t1) ï¿½ maior que o nï¿½ de coluna existentes: n move
 	#Origem:
 	lb t2,0(a2)		#Linha de Origem - t2 = indice da linha onde o jogador esta
-	slli t2,t2,2		#t2= endereço da linha, como cada linha e um word, multiplica o indice por 4
-	add t2,t2,a3		#t2 = endereco da linha na matriz = puxa o índice(t2)da label matriz (t2 = Matriz + x)
-	lw t3,0(t2)		#t3 = linha = recebe o endereço da linha de  origem = (t3 = LINHAX)
+	slli t2,t2,2		#t2= endereï¿½o da linha, como cada linha e um word, multiplica o indice por 4
+	add t2,t2,a3		#t2 = endereco da linha na matriz = puxa o ï¿½ndice(t2)da label matriz (t2 = Matriz + x)
+	lw t3,0(t2)		#t3 = linha = recebe o endereï¿½o da linha de  origem = (t3 = LINHAX)
 	#Destino:
 	slli t2,t1,2		#t2 = indice da coluna destino * 4
-	add t2,t2,t3		#t2 = endereco da linha de origem (recebe endereço de linha de origem + indice da coluna destino * 4 (x*4)
+	add t2,t2,t3		#t2 = endereco da linha de origem (recebe endereï¿½o de linha de origem + indice da coluna destino * 4 (x*4)
 	lw t4,0(t2)		#t4 = o objeto que estava no endereco da coluna de destino
 	
 	#Comparacoes de Colisoes Permitidas ou nao:
@@ -90,11 +88,11 @@ MOV_LR:
 	beq t4 t6 FIM		# N move
 	
 MOV_LR_FREE: #Label: "Nao ha obstaculos, mova:"
-	slli t4,t0,2		# t4 = endereço de coluna de origem
+	slli t4,t0,2		# t4 = endereï¿½o de coluna de origem
 	add t4,t4,t3		# t4 = endereco original do jogador
-	sw zero,0(t4)		#!!! O local de origem do player chão que já estava lá !!!
+	sw zero,0(t4)		#!!! O local de origem do player chï¿½o que jï¿½ estava lï¿½ !!!
 	sw a1,0(t2)		#!!! coloca o jogador no novo endereco !!!
-	sb t1,1(a2)		#muda a posicao do jogador na matriz
+	sb t1,1(a2)		# muda a posicao do jogador na matriz 
 	j MOV_EFETIVADO		
 	
 SEFODEU:
@@ -103,14 +101,15 @@ SEFODEU:
 	ecall
 	li a7 10
 	ecall
+	
 MOV_EFETIVADO:
-	addi s11 s11-1		#A cada movimento: total de movimentos disponiveis - 1
-	bltz s11, SEFODEU	#Verifa se s11 < 0
-	mv a0 s11		# alocacao para print
+	addi s5,s5-1		# A cada movimento: total de movimentos disponiveis - 1
+	bltz s5, SEFODEU	# Verifa se s5 < 0
+	mv a0,s5		# alocacao para print
 	li a7 1			# cod de print int
 	ecall			# chamada cod acima
-	la a0 restam		# carrega mensagem de movimentos restantes
-	li a7 4			# cod de print de string
+	la a0,restam		# carrega mensagem de movimentos restantes
+	li a7,4			# cod de print de string
 	ecall			# chamada cod acima
 	j FIM	
 
