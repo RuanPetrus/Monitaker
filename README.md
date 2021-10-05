@@ -1,2 +1,2 @@
-#Helltaker in RISCV
-In this project we implement the steam game helltaker in assembly riscv for the ISC class in the Universidade de Brasilia
+# Helltaker - RISCV
+A university assignment project to recreate Helltaker in RISC-V Assembly using [RARS](https://github.com/TheThirdOne/rars).
