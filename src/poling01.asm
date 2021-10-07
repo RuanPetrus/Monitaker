@@ -96,7 +96,15 @@ DOWN:
 MANHA:	
 	j M_LOOP	
 	#jr a6
-FIM: 	
+EMPU_LR_FIM: 	
+	li t6 7
+	beq a1 t6 KILL_LR
+	jr a6
+EMPU_UD_FIM:
+	li t4 7
+	beq a1 t4 KILL_UD
+	jr a6
+FIM:
 	jr a6
 RESET:
 	jr a6
