@@ -7,6 +7,8 @@
 # s4 = music address
 # s5 = turns
 # s6 = last input time
+# s7 = render permission (1 or 0)
+
 
 # a5 = tmp
 
@@ -31,22 +33,14 @@ INIT:
 	li s6, 0
 	# Game loop
 G_LOOP:
-	jal a6,KEY1
-	la a0, player
-	la t0, PLAYER_POS	
-	lb a1,1(t0)  # draw player on a1 tile (y)
-	lb a2,(t0)   # draw player on a2 tile (x)
-	call DRAW_TILE
-	call SWAP_FRAMES
+	jal a6,KEY1	
 	jal P_MUS
-	la a0,floor
-	la t0,PLAYER_APOS
-	lb a1,1(t0)
-	lb a2,(t0)
-	call DRAW_TILE
+	jal a6, GLOBAL_DRAW
 	j G_LOOP
 
-M_LOOP: jal a6,KEY2		# le o teclado	blocking
+M_LOOP: 
+	jal a6,KEY2		# le o teclado	blocking
+	jal P_MUS
 	j M_LOOP
 
 
