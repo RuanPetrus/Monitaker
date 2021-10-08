@@ -35,10 +35,14 @@ GLOBAL_DRAW_END_NODRAW:
 CORRELATE:
 	mv t2,a3
 
-	li t3,0 # ground
-	beq t2 t3 COL_GROUND
-	li t3,1 # player
-	beq t2 t3 COL_PLAYER
+	li t3,0
+	beq t2,t3,COL_GROUND
+	li t3,1
+	beq t2,t3,COL_PLAYER
+	li t3,8
+	beq t2,t3,COL_WALL
+	li t3,7
+	beq t2,t3,COL_ENEMY
 
 # a0 = sprite we'll be drawing (28x28)
 # a1 = tile y coordinate

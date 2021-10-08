@@ -45,12 +45,8 @@ LEFT:
 	li a0 -1
 	li a1 1
 	la a2 PLAYER_POS
-	la t0,PLAYER_APOS # Pos antiga
 	lb t1,(a2) # x
 	lb t2,1(a2)# y
-	# Guardar x y
-	sb t1,(t0)
-	sb t2,1(t0)
 	la a3 MATRIZ
 	la a4 area
 	j MOV_LR
@@ -58,12 +54,8 @@ RIGHT:
 	li a0 1
 	li a1 1
 	la a2 PLAYER_POS
-	la t0,PLAYER_APOS # Pos antiga
 	lb t1,(a2) # x
 	lb t2,1(a2)# y
-	# Guardar x y
-	sb t1,(t0)
-	sb t2,1(t0)
 	la a3 MATRIZ
 	la a4 area
 	j MOV_LR
@@ -71,12 +63,8 @@ UP:
 	li a0 -1
 	li a1 1
 	la a2 PLAYER_POS
-	la t0,PLAYER_APOS # Pos antiga
 	lb t1,(a2) # x
 	lb t2,1(a2)# y
-	# Guardar x y
-	sb t1,(t0)
-	sb t2,1(t0)
 	la a3 MATRIZ
 	la a4 area
 	j MOV_UD
@@ -84,12 +72,8 @@ DOWN:
 	li a0 1
 	li a1 1
 	la a2 PLAYER_POS
-	la t0,PLAYER_APOS # Pos antiga
 	lb t1,(a2) # x
 	lb t2,1(a2)# y
-	# Guardar x y
-	sb t1,(t0)
-	sb t2,1(t0)
 	la a3 MATRIZ
 	la a4 area
 	j MOV_UD

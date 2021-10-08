@@ -10,3 +10,15 @@ COL_PLAYER:
 	jal DRAW_TILE
 	mv ra,a4
 	ret
+COL_WALL:
+	la a0,wall
+	mv a4,ra
+	jal DRAW_TILE
+	mv ra,a4
+	ret
+COL_ENEMY:
+	la a0,enemy
+	mv a4,ra
+	jal DRAW_TILE
+	mv ra,a4
+	ret
