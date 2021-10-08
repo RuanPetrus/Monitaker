@@ -1,5 +1,5 @@
 COL_GROUND:
-	la a0,floor_tile
+	la a0,floor
 	mv a4,ra
 	jal DRAW_TILE
 	mv ra,a4

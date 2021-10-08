@@ -22,6 +22,7 @@ INIT:
 	call SWAP_FRAMES
 	call RENDER
 	call SWAP_FRAMES
+	li s7,1
 	# Music initialization
 	la t0, D_BG_MUSIC
 	la t1, M_BG	
@@ -52,6 +53,7 @@ M_LOOP:
 .include "mapa1.asm"
 .include "poling01.asm"
 .include "menu-blocking.asm"
+.include "correlate.asm"
 
 .data
 .include "../sprites/map.data"

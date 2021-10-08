@@ -61,7 +61,7 @@ MOV_UD_EMPU:
 MOV_UD_EMPU_ATK:
 	li a1 7
 P0_EMPU_UD:	
-	bltz a0 P01_EMPU_UD		# identifica se move para frente ou trás
+	bltz a0 P01_EMPU_UD		# identifica se move para frente ou trï¿½s
 	addi a0 a0 1			# se positivo, +1 pra frente
 	j P2_EMPU_UD
 P01_EMPU_UD:
@@ -72,7 +72,7 @@ P2_EMPU_UD:
 	#Verificando limites da matriz
 	bltz a0,EMPU_UD_FIM		#verifica se o destino for menor que 0, ou seja, nada: n move
 	lw a7,4(a4)		#t5 = quantidade de colunas na matriz
-	bge a0,a7,EMPU_UD_FIM	#verifica se a posição de destino(t1) é maior que o n° de coluna existentes: n move
+	bge a0,a7,EMPU_UD_FIM	#verifica se a posiï¿½ï¿½o de destino(t1) ï¿½ maior que o nï¿½ de coluna existentes: n move
 	#Origem:			#t5 = ENDERECO ORIGEM DO OBJETO
 	#			
 	#Carregando objeto do destino
@@ -166,7 +166,7 @@ MOV_LR_EMPU:
 MOV_LR_EMPU_ATK:
 	li a1 7			#Objeto que sera movido
 P0_EMPU_LR:	
-	bltz a0 P01_EMPU_LR		# identifica se move para frente ou trás
+	bltz a0 P01_EMPU_LR		# identifica se move para frente ou trï¿½s
 	addi a0 a0 1			# se positivo, +1 pra frente
 	j P2_EMPU_LR
 P01_EMPU_LR:
@@ -177,7 +177,7 @@ P2_EMPU_LR:
 	#Verificando limites da matriz
 	bltz a0,EMPU_LR_FIM		#verifica se o destino for menor que 0, ou seja, nada: n move
 	lw t5,4(a4)		#t5 = quantidade de colunas na matriz
-	bge a0,t5,EMPU_LR_FIM	# #verifica se a posição de destino(t1) é maior que o n° de coluna existentes: n move
+	bge a0,t5,EMPU_LR_FIM	# #verifica se a posiï¿½ï¿½o de destino(t1) ï¿½ maior que o nï¿½ de coluna existentes: n move
 	#Origem:			#t3 = linha de  origem = (t3 = LINHAX)
 	#Destino:
 	slli a0,a0,2		#t2 = indice da coluna destino * 4
@@ -234,6 +234,7 @@ SEFODEU:
 	ecall
 	
 MOV_EFETIVADO:
+	li s7,1                 # Algo na tela mudou, redesenhe
 	addi s5,s5-1		# A cada movimento: total de movimentos disponiveis - 1
 	bltz s5, SEFODEU	# Verifa se s5 < 0
 	mv a0,s5		# alocacao para print

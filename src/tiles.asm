@@ -1,30 +1,33 @@
 GET_V:	# a1, a2 = y, x
-	slli t1, a2, 2
-	slli t2, a1, 2
-	la t0, MATRIZ
+	slli t1,s11,2
+	slli t2,s10,2
+	la t0,MATRIZ
 	add t0,t0,t2
 	lw t0,(t0)
 	add t0,t0,t1
 	
-	lw a3 (t0)
-	
-	li a7, 1
-	mv a0, a3
-	ecall
+	lw a3,(t0)
 	ret
 
 GLOBAL_DRAW:
-	beq s7,zero,GLOBAL_DRAW_END # No frame change
-	li a1,0
-	li t0,8 # constant: map size
-ITER_X: bge a1,t0,GLOBAL_DRAW_END
-	li a2,0
-ITER_Y: bge a2,t0,ITER_X
+	beq s7,zero,GLOBAL_DRAW_END_NODRAW # No frame change
+	li s11,-1
+	li s9,7 # map width & height
+ITER_X: bge s11,s9,GLOBAL_DRAW_END
+	li s10,0
+	addi s11,s11,1
+ITER_Y: bgt s10,s9,ITER_X
 	call GET_V
+	mv a1,s11
+	mv a2,s10
 	call CORRELATE
+	
+	addi s10,s10,1
 	j ITER_Y
 
 GLOBAL_DRAW_END:
+	call SWAP_FRAMES # fallthrough
+GLOBAL_DRAW_END_NODRAW:
 	li s7,0
 	jr a6
 
