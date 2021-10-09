@@ -2,7 +2,7 @@
 KEY1:	
 	csrr t1, time			# t1 = current time
 	sub t0, t1, s6
-	li t2, 1000
+	li t2, 250 # delay de movimento (ms)
 	blt t0, t2, FIM
 	
 	li t1,0xFF200000        	# carrega o endereco de controle do KDMMIO
