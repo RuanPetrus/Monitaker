@@ -1,7 +1,7 @@
 .text
 	# a0= unidades a mover (negativo para esquerda(-1), positivo para direita(+1))
-	# a1= o que vai ser movido (1 para player, 2 para ar, 0 para chï¿½o e parede)
-	# a2= posicao do player (coluna, linha)
+	# a1= o que vai ser movido (de acordo com tabela abaixo)
+	# a2= posicao do player (linha/coluna)
 	# a3= label matriz - ponteiro
 	# a4= tamanho da matriz do jogo (n_linhas, n_colunas)
 	
@@ -54,6 +54,19 @@ MOV_UD:
 	beq t4 t6 MOV_UD_EMPU	#Empurra objeto
 	li t4 7			#Inimigo
 	beq t4 t6 MOV_UD_EMPU_ATK	#Empurra objeto
+	# Espinho
+	li t4 9			#Espinho
+	beq t6 t4 DANO_UD		# Perde movimentos
+	
+DANO_UD:	#Dano Espinho -> Mov efetivado = (-2)
+	add t6,t2,t3		# t6 = endereco original (linhax + offset da coluna)
+	sw zero,0(t6)		#t6 = 0
+	sw a1,0(t5)		#coloca o jogador no novo endereco
+	sb t1,0(a2)		#muda a posicao do jogador
+	j SOFREU_DANO_UD
+DANO_UD1: 
+	li s8 1			# Guarda se existia um espinho onde o jogador está no momento
+	j MOV_EFETIVADO
 	
 MOV_UD_EMPU:
 	li a1 6
@@ -114,7 +127,13 @@ KILL_UD:
 	
 MOV_UD_FREE:
 	add t6,t2,t3		# t6 = endereco original (linhax + offset da coluna)
+	bgt s8 zero THORN_UD	# verifica se existia um espinho de onde o jogador está se retirando
 	sw zero,0(t6)		#t6 = 0
+	sw a1,0(t5)		#coloca o jogador no novo endereco
+	sb t1,0(a2)		#muda a posicao do jogador
+	j MOV_EFETIVADO
+THORN_UD:	li t4 9
+	sw t4,0(t6)		#coloca um espinho onde já continha um
 	sw a1,0(t5)		#coloca o jogador no novo endereco
 	sb t1,0(a2)		#muda a posicao do jogador
 	j MOV_EFETIVADO
@@ -159,6 +178,19 @@ MOV_LR:
 	beq t4 t6 MOV_LR_EMPU	#Empurra objeto
 	li t6 7			#Inimigo
 	beq t4 t6 MOV_LR_EMPU_ATK	#Empurra objeto
+	# Espinho
+	li t6 9			#Inimigo
+	beq t4 t6 DANO_LR		#Empurra objeto
+DANO_LR:
+	slli t4,t0,2		# t4 = endereï¿½o de coluna de origem
+	add t4,t4,t3		# t4 = endereco original do jogador
+	sw zero,0(t4)		#!!! O local de origem do player chï¿½o que jï¿½ estava lï¿½ !!!
+	sw a1,0(t2)		#!!! coloca o jogador no novo endereco !!!
+	sb t1,1(a2)		# muda a posicao do jogador na matriz 
+	j SOFREU_DANO_LR
+DANO_LR01:		
+	li s8 1			# Guarda se existia um espinho onde o jogador está no momento
+	j MOV_EFETIVADO
 	
 MOV_LR_EMPU:
 	li a1 6			#Objeto que sera movido
@@ -221,11 +253,16 @@ KILL_LR:
 MOV_LR_FREE: #Label: "Nao ha obstaculos, mova:"
 	slli t4,t0,2		# t4 = endereï¿½o de coluna de origem
 	add t4,t4,t3		# t4 = endereco original do jogador
+	bgt s8 zero THORN_LR		# verifica se existia um espinho de onde o jogador está se retirando
 	sw zero,0(t4)		#!!! O local de origem do player chï¿½o que jï¿½ estava lï¿½ !!!
 	sw a1,0(t2)		#!!! coloca o jogador no novo endereco !!!
 	sb t1,1(a2)		# muda a posicao do jogador na matriz 
-	j MOV_EFETIVADO		
-	
+	j MOV_EFETIVADO	
+THORN_LR:	li t6 9
+	sw t6, 0(t4)		#coloca um espinho onde já continha um
+	sw a1,0(t2)		#!!! coloca o jogador no novo endereco !!!
+	sb t1,1(a2)		# muda a posicao do jogador na matriz 
+	j MOV_EFETIVADO	
 SEFODEU:
 	la a0 morte
 	li a7 4
@@ -245,5 +282,26 @@ MOV_EFETIVADO:
 	ecall			# chamada cod acima
 	j FIM	
 
-
+SOFREU_DANO_UD:
+	li s7,1                 # Algo na tela mudou, redesenhe
+	addi s5,s5-1		# A cada movimento: total de movimentos disponiveis - 1
+	bltz s5, SEFODEU	# Verifa se s5 < 0
+	mv a0,s5		# alocacao para print
+	li a7 1			# cod de print int
+	ecall			# chamada cod acima
+	la a0,restam		# carrega mensagem de movimentos restantes
+	li a7,4			# cod de print de string
+	ecall			# chamada cod acima
+	j DANO_UD1
+SOFREU_DANO_LR:
+	li s7,1                 # Algo na tela mudou, redesenhe
+	addi s5,s5-1		# A cada movimento: total de movimentos disponiveis - 1
+	bltz s5, SEFODEU	# Verifa se s5 < 0
+	mv a0,s5		# alocacao para print
+	li a7 1			# cod de print int
+	ecall			# chamada cod acima
+	la a0,restam		# carrega mensagem de movimentos restantes
+	li a7,4			# cod de print de string
+	ecall			# chamada cod acima
+	j DANO_LR01
 

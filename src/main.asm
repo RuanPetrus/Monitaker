@@ -8,6 +8,7 @@
 # s5 = turns
 # s6 = last input time
 # s7 = render permission (1 or 0)
+# s8 = thorn in last move (1 or 0)
 
 
 # a5 = tmp
