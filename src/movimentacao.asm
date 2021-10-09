@@ -235,7 +235,7 @@ SEFODEU:
 	
 MOV_EFETIVADO:
 	li s7,1                 # Algo na tela mudou, redesenhe
-	addi s5,s5-1		# A cada movimento: total de movimentos disponiveis - 1
+	addi s5,s5,-1		# A cada movimento: total de movimentos disponiveis - 1
 	bltz s5, SEFODEU	# Verifa se s5 < 0
 	mv a0,s5		# alocacao para print
 	li a7 1			# cod de print int
