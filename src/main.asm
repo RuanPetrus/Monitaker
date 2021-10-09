@@ -14,14 +14,6 @@
 
 INIT:
 	jal INIT_VIDEO
-	# Load map and draw it on both buffers
-	la a0, map
-	li a1, 0 # x
-	li a2, 0 # y
-	call RENDER
-	call SWAP_FRAMES
-	call RENDER
-	call SWAP_FRAMES
 	li s7,1
 	# Music initialization
 	la t0, D_BG_MUSIC
@@ -56,7 +48,6 @@ M_LOOP:
 .include "correlate.asm"
 
 .data
-.include "../sprites/map.data"
 .include "../sprites/player.data"
 .include "../sprites/floor_tile.data"
 .include "../sprites/wall.data"
