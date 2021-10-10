@@ -188,7 +188,7 @@ DANO_LR:
 	sw a1,0(t2)		#!!! coloca o jogador no novo endereco !!!
 	sb t1,1(a2)		# muda a posicao do jogador na matriz 
 	j SOFREU_DANO_LR
-DANO_LR01:		
+DANO_LR1:		
 	li s8 1			# Guarda se existia um espinho onde o jogador está no momento
 	j MOV_EFETIVADO
 	
@@ -272,10 +272,10 @@ SEFODEU:
 	
 MOV_EFETIVADO:
 	li s7,1                 # Algo na tela mudou, redesenhe
-	addi s5,s5-1		# A cada movimento: total de movimentos disponiveis - 1
+	addi s5,s5 -1		# A cada movimento: total de movimentos disponiveis - 1
 	bltz s5, SEFODEU	# Verifa se s5 < 0
 	mv a0,s5		# alocacao para print
-	li a7 1			# cod de print int
+	li a7 1			# cod de print int								
 	ecall			# chamada cod acima
 	la a0,restam		# carrega mensagem de movimentos restantes
 	li a7,4			# cod de print de string
@@ -283,7 +283,6 @@ MOV_EFETIVADO:
 	j FIM	
 
 SOFREU_DANO_UD:
-	li s7,1                 # Algo na tela mudou, redesenhe
 	addi s5,s5-1		# A cada movimento: total de movimentos disponiveis - 1
 	bltz s5, SEFODEU	# Verifa se s5 < 0
 	mv a0,s5		# alocacao para print
@@ -294,7 +293,6 @@ SOFREU_DANO_UD:
 	ecall			# chamada cod acima
 	j DANO_UD1
 SOFREU_DANO_LR:
-	li s7,1                 # Algo na tela mudou, redesenhe
 	addi s5,s5-1		# A cada movimento: total de movimentos disponiveis - 1
 	bltz s5, SEFODEU	# Verifa se s5 < 0
 	mv a0,s5		# alocacao para print
@@ -303,5 +301,5 @@ SOFREU_DANO_LR:
 	la a0,restam		# carrega mensagem de movimentos restantes
 	li a7,4			# cod de print de string
 	ecall			# chamada cod acima
-	j DANO_LR01
+	j DANO_LR1
 

@@ -44,7 +44,7 @@ M_LOOP:
 	jal a6,KEY2		# le o teclado	blocking
 	jal P_MUS
 	j M_LOOP
-
+	
 
 .include "tiles.asm"
 .include "buffer.asm"
