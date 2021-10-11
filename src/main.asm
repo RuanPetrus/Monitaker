@@ -53,3 +53,4 @@ M_LOOP:
 .include "../sprites/floor_tile.data"
 .include "../sprites/wall.data"
 .include "../sprites/enemy.data"
+.include "../sprites/spike.data"

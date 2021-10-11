@@ -22,3 +22,10 @@ COL_ENEMY:
 	jal DRAW_TILE
 	mv ra,a4
 	ret
+
+COL_SPIKE:
+	la a0,spike
+	mv a4,ra
+	jal DRAW_TILE
+	mv ra,a4
+	ret

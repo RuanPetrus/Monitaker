@@ -43,6 +43,8 @@ CORRELATE:
 	beq t2,t3,COL_WALL
 	li t3,7
 	beq t2,t3,COL_ENEMY
+	li t3,9
+	beq t2,t3,COL_SPIKE
 
 # a0 = sprite we'll be drawing (28x28)
 # a1 = tile y coordinate

@@ -60,12 +60,12 @@ MOV_UD:
 	
 DANO_UD:	#Dano Espinho -> Mov efetivado = (-2)
 	add t6,t2,t3		# t6 = endereco original (linhax + offset da coluna)
-	sw zero,0(t6)		#t6 = 0
+	sw s8,0(t6)		#t6 = 0
 	sw a1,0(t5)		#coloca o jogador no novo endereco
 	sb t1,0(a2)		#muda a posicao do jogador
 	j SOFREU_DANO_UD
 DANO_UD1: 
-	li s8 1			# Guarda se existia um espinho onde o jogador está no momento
+	li s8, 9		# Guarda se existia um espinho onde o jogador está no momento
 	j MOV_EFETIVADO
 	
 MOV_UD_EMPU:
@@ -136,6 +136,7 @@ THORN_UD:	li t4 9
 	sw t4,0(t6)		#coloca um espinho onde já continha um
 	sw a1,0(t5)		#coloca o jogador no novo endereco
 	sb t1,0(a2)		#muda a posicao do jogador
+	li s8, 0
 	j MOV_EFETIVADO
 	
 # Movimentacao - Left/Rigth - Entre colunas
@@ -184,12 +185,12 @@ MOV_LR:
 DANO_LR:
 	slli t4,t0,2		# t4 = endereï¿½o de coluna de origem
 	add t4,t4,t3		# t4 = endereco original do jogador
-	sw zero,0(t4)		#!!! O local de origem do player chï¿½o que jï¿½ estava lï¿½ !!!
+	sw s8,0(t4)		#!!! O local de origem do player chï¿½o que jï¿½ estava lï¿½ !!!
 	sw a1,0(t2)		#!!! coloca o jogador no novo endereco !!!
 	sb t1,1(a2)		# muda a posicao do jogador na matriz 
 	j SOFREU_DANO_LR
 DANO_LR1:		
-	li s8 1			# Guarda se existia um espinho onde o jogador está no momento
+	li s8, 9			# Guarda se existia um espinho onde o jogador está no momento
 	j MOV_EFETIVADO
 	
 MOV_LR_EMPU:
@@ -258,10 +259,12 @@ MOV_LR_FREE: #Label: "Nao ha obstaculos, mova:"
 	sw a1,0(t2)		#!!! coloca o jogador no novo endereco !!!
 	sb t1,1(a2)		# muda a posicao do jogador na matriz 
 	j MOV_EFETIVADO	
-THORN_LR:	li t6 9
+THORN_LR:
+	li t6 9
 	sw t6, 0(t4)		#coloca um espinho onde já continha um
 	sw a1,0(t2)		#!!! coloca o jogador no novo endereco !!!
 	sb t1,1(a2)		# muda a posicao do jogador na matriz 
+	li s8, 0
 	j MOV_EFETIVADO	
 SEFODEU:
 	la a0 morte
@@ -283,7 +286,7 @@ MOV_EFETIVADO:
 	j FIM	
 
 SOFREU_DANO_UD:
-	addi s5,s5-1		# A cada movimento: total de movimentos disponiveis - 1
+	addi s5,s5,-1		# A cada movimento: total de movimentos disponiveis - 1
 	bltz s5, SEFODEU	# Verifa se s5 < 0
 	mv a0,s5		# alocacao para print
 	li a7 1			# cod de print int
@@ -293,7 +296,7 @@ SOFREU_DANO_UD:
 	ecall			# chamada cod acima
 	j DANO_UD1
 SOFREU_DANO_LR:
-	addi s5,s5-1		# A cada movimento: total de movimentos disponiveis - 1
+	addi s5,s5, -1		# A cada movimento: total de movimentos disponiveis - 1
 	bltz s5, SEFODEU	# Verifa se s5 < 0
 	mv a0,s5		# alocacao para print
 	li a7 1			# cod de print int
