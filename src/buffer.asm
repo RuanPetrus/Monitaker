@@ -27,12 +27,25 @@ SWAP_FRAMES:
 	xori t0,t0,1
 	sw t0,(s3)
 	
+	mv t1,ra # REFRESH_BACK_BUFFER_END uses t0, so we store our ra in t1
 	# Swap back and front buffers
 	mv t0,s1
 	mv s1,s0
 	mv s0,t0
 	
-	mv t1,ra # REFRESH_BACK_BUFFER_END uses t0, so we store our ra in t1
 	jal REFRESH_BACK_BUFFER_END
+	call PAINT_SCREEN
 	mv ra,t1
 	ret
+
+PAINT_SCREEN:
+    li a0, 0
+    mv t0,s1 # Messing with the back buffer's address directly will break the system
+
+    WHILE:
+        bgt t0,s2, DONE
+        sw a0,0(t0)
+        addi t0,t0,4
+        j WHILE
+    DONE:
+        jr ra	

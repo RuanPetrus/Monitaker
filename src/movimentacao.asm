@@ -271,7 +271,7 @@ SEFODEU:
 	li a7 4
 	ecall
 	li a7 10
-	ecall
+		ecall
 	
 MOV_EFETIVADO:
 	li s7,1                 # Algo na tela mudou, redesenhe
@@ -283,6 +283,23 @@ MOV_EFETIVADO:
 	la a0,restam		# carrega mensagem de movimentos restantes
 	li a7,4			# cod de print de string
 	ecall			# chamada cod acima
+	
+
+	la t0, LAST_TILE
+        sw s8, (t0)
+
+	andi t0,s3,0x0001      # mascara o bit menos significativo
+	xori t0, t0, 1		#descobre o buffer antes de chamr swap frames
+	call SWAP_FRAMES
+
+        mv a0, s5
+	mv a4, t0
+        call PRINT_INT         #Chama print_int depois de swapar o buffer
+
+        la t0, LAST_TILE
+        lw s8, (t0)
+
+
 	j FIM	
 
 SOFREU_DANO_UD:

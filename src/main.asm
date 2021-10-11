@@ -1,4 +1,8 @@
+.data
+LAST_TILE:	.word 0
+
 .text
+.include "MACROSv21.s"
 
 # REGISTRADORES
 # s0 = front buffer
@@ -35,6 +39,12 @@ G_LOOP:
 M_LOOP: 
 	jal a6,KEY2		# le o teclado	blocking
 	jal P_MUS
+	la t0, LAST_TILE
+	sw s8, (t0)
+	li a0, 100
+	call PRINT_INT
+	la t0, LAST_TILE
+	lw s8, (t0)
 	j M_LOOP
 	
 
@@ -47,6 +57,8 @@ M_LOOP:
 .include "poling01.asm"
 .include "menu-blocking.asm"
 .include "correlate.asm"
+.include "print_int.asm"
+.include "SYSTEMv21.s"
 
 .data
 .include "../sprites/player.data"
