@@ -16,9 +16,9 @@
 # MAPA EM MATRIZ 8x8: - OBS: cada mapa pode ser em arquivos diferentes
 LINHA0:	.word 1,0,0,0,0,0,0,0
 LINHA1:	.word 0,0,0,7,0,0,0,0
-LINHA2:	.word 0,0,8,8,8,0,0,0
-LINHA3:	.word 0,0,8,7,8,0,0,0
-LINHA4:	.word 0,0,8,8,8,0,0,0
+LINHA2:	.word 0,0,9,8,9,0,0,0
+LINHA3:	.word 0,0,9,7,9,0,0,0
+LINHA4:	.word 0,0,9,8,9,0,0,0
 LINHA5:	.word 0,0,0,0,0,0,0,0
 LINHA6:	.word 0,0,0,0,0,0,0,0
 LINHA7:	.word 0,0,0,0,0,0,0,0
