@@ -14,8 +14,8 @@ COL_WALL:
 	mv ra,a4
 	ret
 COL_ENEMY:
-	la a0,enemy
 	mv a4,ra
+	la a0,enemy
 	jal DRAW_TILE
 	mv ra,a4
 	ret
