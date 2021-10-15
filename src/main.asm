@@ -66,3 +66,4 @@ M_LOOP:
 .include "../sprites/wall.data"
 .include "../sprites/enemy.data"
 .include "../sprites/spike.data"
+.include "../sprites/black.data"

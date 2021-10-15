@@ -287,17 +287,20 @@ MOV_EFETIVADO:
 
 	la t0, LAST_TILE
         sw s8, (t0)
+  lw s11, (s3)
+#	andi s11,s3,0x0001      # mascara o bit menos significativo
+	xori s11, s11, 1		#descobre o buffer antes de chamr swap frames
 
-	andi t0,s3,0x0001      # mascara o bit menos significativo
-	xori t0, t0, 1		#descobre o buffer antes de chamr swap frames
-	call SWAP_FRAMES
+  li a1, 0
+  li a2, 8
+  call CLEAR_TILE
 
-        mv a0, s5
-	mv a4, t0
-        call PRINT_INT         #Chama print_int depois de swapar o buffer
+  mv a0, s5
+	mv a4, s11
+  call PRINT_INT         #Chama print_int depois de swapar o buffer
 
-        la t0, LAST_TILE
-        lw s8, (t0)
+  la t0, LAST_TILE
+  lw s8, (t0)
 
 
 	j FIM	
