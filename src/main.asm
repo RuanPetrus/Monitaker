@@ -29,6 +29,12 @@ INIT:
 	la s5 N_MOV
 	lb s5 0(s5)	# s11 = numero de movimentos disponiveis
 	li s6, 0
+
+  lw a4, (s3)
+	xori a4, a4, 1		#descobre o buffer antes de chamr swap frames
+  mv a0, s5
+  call PRINT_INT         #Chama print_int depois de swapar o buffer
+  li s8, 0
 	# Game loop
 G_LOOP:
 	jal a6,KEY1	
