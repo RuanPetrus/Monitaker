@@ -1,1 +1,14 @@
-  Player_Animation: .word 3, 1, player, enemy, black 
+Player_Animation: .word 11, 1, hero1.bmp,hero2.bmp,hero3.bmp,hero4.bmp,hero5.bmp,hero6.bmp,hero7.bmp,hero8.bmp,hero9.bmp,hero10.bmp,hero11.bmp   
+
+
+.include "../sprites/Player/stop/hero1.data"
+.include "../sprites/Player/stop/hero2.data"
+.include "../sprites/Player/stop/hero3.data"
+.include "../sprites/Player/stop/hero4.data"
+.include "../sprites/Player/stop/hero5.data"
+.include "../sprites/Player/stop/hero6.data"
+.include "../sprites/Player/stop/hero7.data"
+.include "../sprites/Player/stop/hero8.data"
+.include "../sprites/Player/stop/hero9.data"
+.include "../sprites/Player/stop/hero10.data"
+.include "../sprites/Player/stop/hero11.data"
