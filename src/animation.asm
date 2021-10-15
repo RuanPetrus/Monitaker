@@ -1,3 +1,4 @@
+
 DRAW_ANIMATION:
   lw t0, (a0)   #Tamanho da animatição
   lw t1, 4(a0)  #Posicao atual da animacao
