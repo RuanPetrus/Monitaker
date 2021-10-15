@@ -20,7 +20,11 @@ MAP_WIDTH: .byte 7
 #t2 = MAP_WIDTH
 #t4 = y
 GLOBAL_DRAW:
-	beq s7,zero,GLOBAL_DRAW_END_NODRAW # No frame change
+	csrr t1, time			# t1 = current time
+	sub t0, t1, s7
+	li t2, 500 # delay de movimento (ms)
+	blt t0, t2, GLOBAL_DRAW_END_NODRAW
+  mv s7, t1
   la t0, XY
   li t3, -1
   sb t3, 0(t0)
@@ -56,9 +60,22 @@ ITER_Y:
 	j ITER_Y
 
 GLOBAL_DRAW_END:
+	la t0, LAST_TILE
+  sw s8, (t0)
+  li a1, 0
+  li a2, 8
+  call CLEAR_TILE
+
+  lw a4, (s3)
+	xori a4, a4, 1		#descobre o buffer antes de chamr swap frames
+  mv a0, s5
+  call PRINT_INT         #Chama print_int depois de swapar o buffer
+
+  la t0, LAST_TILE
+  lw s8, (t0)
+
 	call SWAP_FRAMES # fallthrough
 GLOBAL_DRAW_END_NODRAW:
-	li s7,0
 	jr a6
 
 # Correlate number to a tile and draw it at (a2,a1)

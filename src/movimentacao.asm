@@ -274,7 +274,6 @@ SEFODEU:
 		ecall
 	
 MOV_EFETIVADO:
-	li s7,1                 # Algo na tela mudou, redesenhe
 	addi s5,s5,-1		# A cada movimento: total de movimentos disponiveis - 1
 	bltz s5, SEFODEU	# Verifa se s5 < 0
 	mv a0,s5		# alocacao para print
@@ -284,21 +283,6 @@ MOV_EFETIVADO:
 	li a7,4			# cod de print de string
 	ecall			# chamada cod acima
 	
-
-	la t0, LAST_TILE
-        sw s8, (t0)
-  li a1, 0
-  li a2, 8
-  call CLEAR_TILE
-
-  lw a4, (s3)
-	xori a4, a4, 1		#descobre o buffer antes de chamr swap frames
-  mv a0, s5
-  call PRINT_INT         #Chama print_int depois de swapar o buffer
-
-  la t0, LAST_TILE
-  lw s8, (t0)
-
 
 	j FIM	
 

@@ -31,9 +31,9 @@ INIT:
 	li s6, 0
 
   lw a4, (s3)
-	xori a4, a4, 1		#descobre o buffer antes de chamr swap frames
+	xori a4, a4, 1		
   mv a0, s5
-  call PRINT_INT         #Chama print_int depois de swapar o buffer
+  call PRINT_INT
   li s8, 0
 	# Game loop
 G_LOOP:
@@ -65,6 +65,7 @@ M_LOOP:
 .include "correlate.asm"
 .include "print_int.asm"
 .include "SYSTEMv21.s"
+.include "animation.asm"
 
 .data
 .include "../sprites/player.data"
@@ -73,3 +74,4 @@ M_LOOP:
 .include "../sprites/enemy.data"
 .include "../sprites/spike.data"
 .include "../sprites/black.data"
+.include "animation.data"
