@@ -34,18 +34,6 @@ SWAP_FRAMES:
 	mv s0,t0
 	
 	jal REFRESH_BACK_BUFFER_END
-	call PAINT_SCREEN
 	mv ra,t1
 	ret
 
-PAINT_SCREEN:
-    li a0, 0
-    mv t0,s1 # Messing with the back buffer's address directly will break the system
-
-    WHILE:
-        bgt t0,s2, DONE
-        sw a0,0(t0)
-        addi t0,t0,4
-        j WHILE
-    DONE:
-        jr ra	

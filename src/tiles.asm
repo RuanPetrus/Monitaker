@@ -1,6 +1,6 @@
-GET_V:	# a1, a2 = y, x
-	slli t1,s11,2
-	slli t2,s10,2
+GET_V:	# a1, a2 = x, y
+	slli t1,a1,2
+	slli t2,a2,2
 	la t0,MATRIZ
 	add t0,t0,t2
 	lw t0,(t0)
@@ -9,20 +9,50 @@ GET_V:	# a1, a2 = y, x
 	lw a3,(t0)
 	ret
 
+.data
+XY: .byte -1, 0  
+MAP_WIDTH: .byte 7
+
+.text
+
+#t0 = LABEL adress
+#t1 = x
+#t2 = MAP_WIDTH
+#t4 = y
 GLOBAL_DRAW:
 	beq s7,zero,GLOBAL_DRAW_END_NODRAW # No frame change
-	li s11,-1
-	li s9,7 # map width & height
-ITER_X: bge s11,s9,GLOBAL_DRAW_END
-	li s10,0
-	addi s11,s11,1
-ITER_Y: bgt s10,s9,ITER_X
+  la t0, XY
+  li t3, -1
+  sb t3, 0(t0)
+ITER_X: 
+  la t0, XY
+  lb t1, 0(t0)
+  la t2, MAP_WIDTH
+  lb t2, (t2)
+
+  bge t1,t2,GLOBAL_DRAW_END
+	sb zero,1(t0)
+	addi t1, t1, 1
+  sb t1, 0(t0)
+ITER_Y:
+  lb t4, 1(t0)
+
+  bgt t4,t2,ITER_X
+
+  mv a1, t1
+  mv a2, t4
 	call GET_V
-	mv a1,s11
-	mv a2,s10
 	call CORRELATE
 	
-	addi s10,s10,1
+  la t0, XY
+  lb t1, (t0)
+  lb t4, 1(t0)
+  addi t4, t4, 1
+  sb t4, 1(t0)
+
+  la t2, MAP_WIDTH
+  lb t2, 0(t2)
+
 	j ITER_Y
 
 GLOBAL_DRAW_END:
@@ -52,8 +82,8 @@ CORRELATE:
 
 # Draw tile (tx,ty)
 DRAW_TILE:
-	# Load image dimensions
 	lw t0,0(a0) # w
+	# Load image dimensions
 	lw t1,4(a0) # h
 	# Translate absolute coordinates to tile coordinates
 	mul a1,a1,t0  # y = ty * w
@@ -66,3 +96,4 @@ DRAW_TILE:
 	call RENDER
 	mv ra,a5
 	ret
+
