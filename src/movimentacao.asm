@@ -274,6 +274,10 @@ SEFODEU:
 		ecall
 	
 MOV_EFETIVADO:
+  la t0, Current_Player_Animation
+  la t1, Player_Movement_Animation
+  sw t1, (t0)
+
 	addi s5,s5,-1		# A cada movimento: total de movimentos disponiveis - 1
 	bltz s5, SEFODEU	# Verifa se s5 < 0
 	mv a0,s5		# alocacao para print

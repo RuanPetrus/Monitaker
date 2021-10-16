@@ -69,7 +69,7 @@ M_LOOP:
 
 .data
 .include "../sprites/player.data"
-.include "../sprites/floor.data"
+.include "../sprites/floor1.data"
 .include "../sprites/wall.data"
 .include "../sprites/enemy.data"
 .include "../sprites/spike.data"

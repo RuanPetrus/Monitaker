@@ -1,5 +1,6 @@
 Current_Player_Animation: .word Player_Default_Animation
 Player_Default_Animation: .word 11, 1, hero1.bmp,hero2.bmp,hero3.bmp,hero4.bmp,hero5.bmp,hero6.bmp,hero7.bmp,hero8.bmp,hero9.bmp,hero10.bmp,hero11.bmp   
+Player_Movement_Animation: .word 6, 1, heroMove1, heroMove2, heroMove3, heroMove4, heroMove5, heroMove6
 
 Skelet_Default_Animation: .word 12, 1, skelet1,skelet2,skelet3,skelet4,skelet5,skelet6,skelet7,skelet8,skelet9,skelet10,skelet11,skelet12,
 Current_Skelet_Animation: .word Skelet_Default_Animation
@@ -31,3 +32,10 @@ Current_Skelet_Animation: .word Skelet_Default_Animation
 .include "../sprites/skeleto/stop/skelet11.data"
 .include "../sprites/skeleto/stop/skelet12.data"
 
+#PLAYER MOVE
+.include "../sprites/Player/heroMove/heroMove1.data"
+.include "../sprites/Player/heroMove/heroMove2.data"
+.include "../sprites/Player/heroMove/heroMove3.data"
+.include "../sprites/Player/heroMove/heroMove4.data"
+.include "../sprites/Player/heroMove/heroMove5.data"
+.include "../sprites/Player/heroMove/heroMove6.data"
