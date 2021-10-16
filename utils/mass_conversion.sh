@@ -12,7 +12,7 @@ qnd() { # Quick n' Dirty Image Fix
 
 # Error checking
 [ ! -d "$1" ] && error "Not a valid directory."
-command -v bmp2isc || error "bmp2isc is not installed."
+command -v bmp2isc 1>/dev/null || error "bmp2isc is not installed."
 
 for file in $(find "$1" -type f -iname '*.bmp' | tr '\n' ' ');
 do
