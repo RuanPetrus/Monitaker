@@ -1,6 +1,10 @@
 #!/bin/sh
 
-# Converts all files in $1 (must have .bmp extension) into .data files
+# Applies the Quick n' Dirty fix to all .data files in $1
+
+# Usually there is no need to run this script. The fix is already applied in
+# the main mass_convert.sh script but this might be useful to convert leftover
+# files created before it.
 
 error() { printf "ERROR: %s\n" "$1" >&2; exit 1; }
 
