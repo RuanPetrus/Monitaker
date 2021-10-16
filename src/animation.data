@@ -1,4 +1,5 @@
-Player_Animation: .word 11, 1, hero1.bmp,hero2.bmp,hero3.bmp,hero4.bmp,hero5.bmp,hero6.bmp,hero7.bmp,hero8.bmp,hero9.bmp,hero10.bmp,hero11.bmp   
+Current_Player_Animation: .word Player_Default_Animation
+Player_Default_Animation: .word 11, 1, hero1.bmp,hero2.bmp,hero3.bmp,hero4.bmp,hero5.bmp,hero6.bmp,hero7.bmp,hero8.bmp,hero9.bmp,hero10.bmp,hero11.bmp   
 
 
 .include "../sprites/Player/stop/hero1.data"

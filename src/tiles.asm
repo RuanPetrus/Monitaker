@@ -22,7 +22,7 @@ MAP_WIDTH: .byte 7
 GLOBAL_DRAW:
 	csrr t1, time			# t1 = current time
 	sub t0, t1, s7
-	li t2, 500 # delay de movimento (ms)
+	li t2, 100 # delay de movimento (ms)
 	blt t0, t2, GLOBAL_DRAW_END_NODRAW
   mv s7, t1
   la t0, XY
