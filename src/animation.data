@@ -1,7 +1,10 @@
 Current_Player_Animation: .word Player_Default_Animation
 Player_Default_Animation: .word 11, 1, hero1.bmp,hero2.bmp,hero3.bmp,hero4.bmp,hero5.bmp,hero6.bmp,hero7.bmp,hero8.bmp,hero9.bmp,hero10.bmp,hero11.bmp   
 
+Skelet_Default_Animation: .word 12, 1, skelet1,skelet2,skelet3,skelet4,skelet5,skelet6,skelet7,skelet8,skelet9,skelet10,skelet11,skelet12,
+Current_Skelet_Animation: .word Skelet_Default_Animation
 
+#PLAYER STOP
 .include "../sprites/Player/stop/hero1.data"
 .include "../sprites/Player/stop/hero2.data"
 .include "../sprites/Player/stop/hero3.data"
@@ -13,3 +16,18 @@ Player_Default_Animation: .word 11, 1, hero1.bmp,hero2.bmp,hero3.bmp,hero4.bmp,h
 .include "../sprites/Player/stop/hero9.data"
 .include "../sprites/Player/stop/hero10.data"
 .include "../sprites/Player/stop/hero11.data"
+
+#ENEMY STOP
+.include "../sprites/skeleto/stop/skelet1.data"
+.include "../sprites/skeleto/stop/skelet2.data"
+.include "../sprites/skeleto/stop/skelet3.data"
+.include "../sprites/skeleto/stop/skelet4.data"
+.include "../sprites/skeleto/stop/skelet5.data"
+.include "../sprites/skeleto/stop/skelet6.data"
+.include "../sprites/skeleto/stop/skelet7.data"
+.include "../sprites/skeleto/stop/skelet8.data"
+.include "../sprites/skeleto/stop/skelet9.data"
+.include "../sprites/skeleto/stop/skelet10.data"
+.include "../sprites/skeleto/stop/skelet11.data"
+.include "../sprites/skeleto/stop/skelet12.data"
+

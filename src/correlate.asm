@@ -44,9 +44,8 @@ COL_ENEMY:
   la t0, POSICAOXY
   lb a1, 0(t0)
   lb a2, 1(t0)
-	la a0,enemy
-	jal DRAW_TILE
 	mv ra,a4
+	j DRAW_E_ANIMATION
 	ret
 
 COL_SPIKE:
