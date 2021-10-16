@@ -25,9 +25,8 @@ DESENHA1:
   la t0, POSICAOXY
   lb a1, 0(t0)
   lb a2, 1(t0)
-	la a0,Player_Animation
   mv ra, a4
-	j DRAW_ANIMATION
+	j DRAW_P_ANIMATION
 COL_WALL:
 	la a0,wall
 	mv a4,ra
