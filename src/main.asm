@@ -17,6 +17,9 @@ LAST_TILE:	.word 0
 
 # a5 = tmp
 
+
+call MAPA01
+
 INIT:
 	jal INIT_VIDEO
 	li s7,1
@@ -59,13 +62,13 @@ M_LOOP:
 .include "render.asm"
 .include "sound.asm"
 .include "movimentacao.asm"
-.include "mapa1.asm"
 .include "poling01.asm"
 .include "menu-blocking.asm"
 .include "correlate.asm"
 .include "print_int.asm"
 .include "SYSTEMv21.s"
 .include "animation.asm"
+.include "map_manager.asm"
 
 .data
 .include "../sprites/player.data"

@@ -1,12 +1,28 @@
-GET_V:	# a1, a2 = x, y
+GET_V:	
+	# a1, a2 = x, y
 	slli t1,a1,2
 	slli t2,a2,2
 	la t0,MATRIZ
 	add t0,t0,t2
 	lw t0,(t0)
 	add t0,t0,t1
-	
 	lw a3,(t0)
+	ret
+
+SET_PLAYER:
+	lw t0, PLAYER_POS
+	sb a1, (t0)
+	sb a2, 1(t0)
+SET_V:
+	# a1, a2 = x, y
+	# a0 = o que queremos colocar
+	slli t1,a1,2
+	slli t2,a2,2
+	la t0,MATRIZ
+	add t0,t0,t2
+	lw t0,(t0)
+	add t0,t0,t1
+	sw a0,(t0)
 	ret
 
 .data
