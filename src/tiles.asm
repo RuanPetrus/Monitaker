@@ -9,10 +9,17 @@ GET_V:
 	lw a3,(t0)
 	ret
 
+SET_N_MOV:
+	la s10, N_MOV
+	sb a0, (s10)
+	ret
+
 SET_PLAYER:
-	lw t0, PLAYER_POS
-	sb a1, (t0)
-	sb a2, 1(t0)
+	# Somente o player e invertido.
+	# a2 = x; a1 = y PARA O PLAYER
+	la t0, PLAYER_POS
+	sb a1, 1(t0) # y
+	sb a2, (t0) # x
 SET_V:
 	# a1, a2 = x, y
 	# a0 = o que queremos colocar

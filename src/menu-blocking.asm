@@ -29,10 +29,10 @@ um_dois:
 Op1:	la a0 Opcao_1
 	li a7 4
 	ecall
+	call MAP_WIN
 	jr a6
 Op2:	la a0 Opcao_2
 	li a7 4
 	ecall
 	jal G_LOOP
-	
 	jr a6

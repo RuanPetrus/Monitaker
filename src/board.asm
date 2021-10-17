@@ -14,9 +14,9 @@
 
 
 # MAPA EM MATRIZ 8x8: - OBS: cada mapa pode ser em arquivos diferentes
-LINHA0:	.word 0,0,0,0,0,0,0,7
-LINHA1:	.word 0,0,0,0,0,9,0,0
-LINHA2:	.word 0,0,0,0,0,0,8,0
+LINHA0:	.word 0,0,0,0,0,0,0,0
+LINHA1:	.word 0,0,0,0,0,0,0,0
+LINHA2:	.word 0,0,0,0,0,0,0,0
 LINHA3:	.word 0,0,0,0,0,0,0,0
 LINHA4:	.word 0,0,0,0,0,0,0,0
 LINHA5:	.word 0,0,0,0,0,0,0,0
@@ -26,7 +26,7 @@ LINHA7:	.word 0,0,0,0,0,0,0,0
 MATRIZ: .word LINHA0,LINHA1,LINHA2,LINHA3,LINHA4,LINHA5,LINHA6,LINHA7 # pontero
 PLAYER_POS: .byte 0,0 	# Indice do jogador (linha e coluna)
 area:	.word 8,8 	# n_linhas e colunas
-N_MOV: 	.byte 30	# Numero de movimentos disponiveis nessa fase
+N_MOV: 	.byte 9	# Numero de movimentos disponiveis nessa fase
 restam: .string " movimentos restantes.\n"
 morte:	.string "SE FODEU!\n"
 
