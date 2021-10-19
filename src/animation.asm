@@ -19,6 +19,7 @@ PROX:
   addi t1, t1, 4
   add t3, t3, t1
   lw a0, (t3)
+  mv a3, s9
   j DRAW_TILE
 
    
@@ -43,5 +44,6 @@ PROX1:
   addi t1, t1, 4
   add t3, t3, t1
   lw a0, (t3)
+  mv a3, zero
   j DRAW_TILE
 

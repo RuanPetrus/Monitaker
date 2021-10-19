@@ -49,6 +49,9 @@ LEFT:
 	lb t2,1(a2)# y
 	la a3 MATRIZ
 	la a4 area
+
+  li s9, 1
+
 	j MOV_LR
 RIGHT:
 	li a0 1
@@ -58,6 +61,9 @@ RIGHT:
 	lb t2,1(a2)# y
 	la a3 MATRIZ
 	la a4 area
+
+  li s9, 0
+
 	j MOV_LR
 UP:
 	li a0 -1
