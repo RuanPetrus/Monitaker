@@ -119,6 +119,7 @@ CORRELATE:
 # a0 = sprite we'll be drawing (28x28)
 # a1 = tile y coordinate
 # a2 = tile x coordinate
+# a3 = side to be drawing 
 
 # Draw tile (tx,ty)
 DRAW_TILE:
@@ -133,9 +134,17 @@ DRAW_TILE:
 	addi a2,a2,8
 	
 	mv a5,ra
-	call RENDER
+
+  beq a3, zero, DIREITA
+
+	call REV_RENDER
 	mv ra,a5
 	ret
+
+DIREITA:
+  call RENDER
+  mv ra, a5
+  ret 
 
 CLEAR_TILE:
   la a0, black
