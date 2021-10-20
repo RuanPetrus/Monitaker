@@ -130,8 +130,8 @@ DRAW_TILE:
 	mul a1,a1,t0  # y = ty * w
 	mul a2,a2,t1  # x = tx * h
 	# Add border offsets
-	addi a1,a1,48
-	addi a2,a2,8
+	addi a1,a1,90
+	addi a2,a2,10
 	
 	mv a5,ra
 
@@ -147,16 +147,9 @@ DIREITA:
   ret 
 
 CLEAR_TILE:
-  la a0, black
-	lw t0,0(a0) # w
-	# Load image dimensions
-	lw t1,4(a0) # h
-	# Translate absolute coordinates to tile coordinates
-	mul a1,a1,t0  # y = ty * w
-	mul a2,a2,t1  # x = tx * h
-	# Add border offsets
-	addi a1,a1,10
-	addi a2,a2,-10
+  	la a0, black
+	li a1, 25
+	li a2, 180
 	
 	mv a5,ra
 	call RENDER

@@ -13,10 +13,9 @@ LAST_TILE:	.word 0
 # s6 = last input time
 # s7 = render permission (1 or 0)
 # s8 = thorn in last move (1 or 0)
-
+# s9 = side to render
 
 # a5 = tmp
-
 
 call MAPA01
 
@@ -33,11 +32,22 @@ INIT:
 	lb s5 0(s5)	# s11 = numero de movimentos disponiveis
 	li s6, 0
 
-  lw a4, (s3)
+	#Hud inicialization
+	la a0, hud
+	li a1, 0
+	li a2, 0
+	call RENDER
+	call SWAP_FRAMES
+	la a0, hud
+	li a1, 0
+	li a2, 0
+	call RENDER
+
+	lw a4, (s3)
 	xori a4, a4, 1		
-  mv a0, s5
-  call PRINT_INT
-  li s8, 0
+	mv a0, s5
+	call PRINT_INT
+	li s8, 0
 	# Game loop
 G_LOOP:
 	jal a6,KEY1	
@@ -47,16 +57,10 @@ G_LOOP:
 
 M_LOOP: 
 	jal a6,KEY2		# le o teclado	blocking
-	jal P_MUS
-	la t0, LAST_TILE
-	sw s8, (t0)
-	li a0, 100
-	call PRINT_INT
-	la t0, LAST_TILE
-	lw s8, (t0)
+	jal P_MUS	
 	j M_LOOP
 	
-
+	
 .include "tiles.asm"
 .include "buffer.asm"
 .include "render.asm"
@@ -78,3 +82,4 @@ M_LOOP:
 .include "../sprites/spike.data"
 .include "../sprites/black.data"
 .include "animation.data"
+.include "../sprites/hud.data"
