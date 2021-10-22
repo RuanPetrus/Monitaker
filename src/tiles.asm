@@ -10,8 +10,8 @@ GET_V:
 	ret
 
 SET_N_MOV:
-	la s10, N_MOV
-	sb a0, (s10)
+	la s5, N_MOV
+	sb a0, (s5)
 	ret
 
 SET_PLAYER:
@@ -115,6 +115,12 @@ CORRELATE:
 	beq t2,t3,COL_ENEMY
 	li t3,9
 	beq t2,t3,COL_SPIKE
+	li t3,3
+	beq t2,t3,COL_KEY
+	li t3,4
+	beq t2,t3,COL_CLOSE_DOOR
+	li t3,5
+	beq t2,t3,COL_OPEN_DOOR
 
 # a0 = sprite we'll be drawing (28x28)
 # a1 = tile y coordinate

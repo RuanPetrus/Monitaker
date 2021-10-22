@@ -42,6 +42,8 @@ INIT:
 	li a1, 0
 	li a2, 0
 	call RENDER
+	#DOOR INITIALIZATION
+	li s11, 0
 
 	lw a4, (s3)
 	xori a4, a4, 1		

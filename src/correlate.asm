@@ -59,3 +59,24 @@ COL_SPIKE:
 	jal DRAW_TILE
 	mv ra,a4
 	ret
+COL_KEY:
+	la a0,spike
+	mv a4,ra
+  mv a3, zero
+	jal DRAW_TILE
+	mv ra,a4
+	ret
+COL_CLOSE_DOOR:
+	la a0,black
+	mv a4,ra
+  mv a3, zero
+	jal DRAW_TILE
+	mv ra,a4
+	ret
+COL_OPEN_DOOR:
+	la a0,floor
+	mv a4,ra
+	mv a3, zero
+	jal DRAW_TILE
+	mv ra,a4
+	ret

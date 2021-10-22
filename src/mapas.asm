@@ -1,6 +1,6 @@
 .text
 MAPA01:
-	mv t1, ra
+	mv s11, ra
 	call CLEAR_MATRIX
 	# Configurar turnos
 	li a0, 9
@@ -25,8 +25,24 @@ MAPA01:
 	addi a1, a1, -1
 	li a0, 7
 	call SET_V
-	mv ra, t1
+
+	#key
+	li a1, 2
+	li a2, 2
+	li a0, 3
+	call SET_V
+
+	#close door
+	li a1, 3
+	li a2, 3
+	li a0, 4
+	call SET_V
+
+
+
+	mv ra, s11
 	ret
+
 
 MAPA02:
 	mv t1, ra
@@ -60,6 +76,7 @@ MAPA02:
 	li a0, 7
 	call SET_V
 	mv ra, t1
+	li s11, 0
 	ret
 
 BEAT_GAME:

@@ -45,8 +45,6 @@ MOV_UD:
 	li t4 5		# porta Aberta
 	beq t6 t4 MOV_UD_FREE	#Permite mover se tiver porta aberta
 	# Obstaculo: NAO MOVE
-	li t4 4		#Porta Fechada
-	beq t6 t4 FIM		# N move
 	li t4 8		#Parede
 	beq t6 t4 FIM		# N move
 	# Empuroes
@@ -57,6 +55,26 @@ MOV_UD:
 	# Espinho
 	li t4 9			#Espinho
 	beq t6 t4 DANO_UD		# Perde movimentos
+	# Coleta de chave
+	li t4 3			# chaves
+	beq t4 t6 COLETA_UD		#Permite mover se tiver chave
+	#Abertura de porta
+	li t4 4
+	beq t4 t6 OPEN_DOOR_UD	
+COLETA_UD:
+	add t6,t2,t3		# t6 = endereco original (linhax + offset da coluna)
+	bgt s8 zero THORN_UD	# verifica se existia um espinho de onde o jogador estÃ¡ se retirando
+	sw zero,0(t6)		#t6 = 0
+	sw a1,0(t5)		#coloca o jogador no novo endereco
+	sb t1,0(a2)		#muda a posicao do jogador
+	li s11, 1			# Coleta chave
+	j MOV_EFETIVADO	
+OPEN_DOOR_UD:
+	beqz s11 FIM		#Verifica se a chave foi coletada
+	li t4 5			
+	sw t4,0(t5)		#com chave, abre porta
+	li s11, 0
+	j FIM
 	
 DANO_UD:	#Dano Espinho -> Mov efetivado = (-2)
 	add t6,t2,t3		# t6 = endereco original (linhax + offset da coluna)
@@ -170,8 +188,6 @@ MOV_LR:
 	li t6 5			# porta Aberta
 	beq t4 t6 MOV_LR_FREE	#Permite mover se tiver porta aberta
 	#Obstaculo: NAO MOVE
-	li t6 4			#Porta Fechada
-	beq t4 t6 FIM		# N move
 	li t6 8			#Parede
 	beq t4 t6 FIM		# N move
 	#Empuroes
@@ -182,6 +198,27 @@ MOV_LR:
 	# Espinho
 	li t6 9			#Inimigo
 	beq t4 t6 DANO_LR		#Empurra objeto
+	#Coleta
+	li t6 3			#Chave
+	beq t4 t6 COLETA_LR		#Verificar p/ coleta
+	#Abre porta
+	li t6 4			#Porta Fechada
+	beq t4 t6 OPEN_DOOR_LR	#Verificar p/ abertura de porta
+COLETA_LR:
+	slli t4,t0,2		# t4 = endereÃ¯Â¿Â½o de coluna de origem
+	add t4,t4,t3		# t4 = endereco original do jogador
+	bgt s8 zero THORN_LR		# verifica se existia um espinho de onde o jogador estÃ¡ se retirando
+	sw zero,0(t4)		#!!! O local de origem do player chÃ¯Â¿Â½o que jÃ¯Â¿Â½ estava lÃ¯Â¿Â½ !!!
+	sw a1,0(t2)		#!!! coloca o jogador no novo endereco !!!
+	sb t1,1(a2)		# muda a posicao do jogador na matriz 
+	li s11 1			# Coleta chave
+	j MOV_EFETIVADO		
+OPEN_DOOR_LR:
+	beqz s11 FIM		#Verifica se a chave foi coletada
+	li t6 5
+	sw t6,0(t2)		#Transforma porta fechada em aberta
+	li s11 0			#com chave, abre porta
+	j FIM
 DANO_LR:
 	slli t4,t0,2		# t4 = endereï¿½o de coluna de origem
 	add t4,t4,t3		# t4 = endereco original do jogador
