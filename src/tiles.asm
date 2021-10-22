@@ -9,9 +9,11 @@ GET_V:
 	lw a3,(t0)
 	ret
 
-SET_N_MOV:
-	la s5, N_MOV
-	sb a0, (s5)
+	# Mudar no label
+	la t0, N_MOV
+	sb a0, (t0)
+	# Mudar no registrador
+	mv s5, a0
 	ret
 
 SET_PLAYER:
