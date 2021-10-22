@@ -80,3 +80,10 @@ COL_OPEN_DOOR:
 	jal DRAW_TILE
 	mv ra,a4
 	ret
+COL_DEMON_GIRL:
+	la a0,spike
+	mv a4,ra
+	mv a3, zero
+	jal DRAW_TILE
+	mv ra,a4
+	ret

@@ -61,6 +61,9 @@ MOV_UD:
 	#Abertura de porta
 	li t4 4
 	beq t4 t6 OPEN_DOOR_UD	
+	#Passou de fase
+	li t4, 2
+	beq t4, t6 MAP_WIN
 COLETA_UD:
 	add t6,t2,t3		# t6 = endereco original (linhax + offset da coluna)
 	bgt s8 zero THORN_UD	# verifica se existia um espinho de onde o jogador estÃ¡ se retirando
@@ -204,6 +207,9 @@ MOV_LR:
 	#Abre porta
 	li t6 4			#Porta Fechada
 	beq t4 t6 OPEN_DOOR_LR	#Verificar p/ abertura de porta
+	#Passou de fase
+	li t6, 2
+	beq t4 t6 MAP_WIN
 COLETA_LR:
 	slli t4,t0,2		# t4 = endereÃ¯Â¿Â½o de coluna de origem
 	add t4,t4,t3		# t4 = endereco original do jogador

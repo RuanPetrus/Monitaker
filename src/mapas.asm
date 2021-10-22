@@ -38,6 +38,11 @@ MAPA01:
 	li a0, 4
 	call SET_V
 
+	#Demon girl
+	li a1, 7
+	li a2, 0
+	li a0, 2
+	call SET_V
 
 
 	mv ra, s11

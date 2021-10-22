@@ -121,6 +121,8 @@ CORRELATE:
 	beq t2,t3,COL_CLOSE_DOOR
 	li t3,5
 	beq t2,t3,COL_OPEN_DOOR
+	li t3,2
+	beq t2,t3,COL_DEMON_GIRL
 
 # a0 = sprite we'll be drawing (28x28)
 # a1 = tile y coordinate
