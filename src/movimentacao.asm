@@ -287,6 +287,12 @@ EMPU_LR_FREE:
 	add t6,t6,t3		# t4 = endereco original do objeto
 	sw zero,0(t6)		# Coloca 0 onde o bloco estava
 	sw a1,0(a0)		# muda posicao do bloco na matriz
+	la t0, Current_Player_Animation
+  	la t1, Player_Kick_Animation
+  	sw t1, (t0)
+	la t0, Current_Skelet_Animation
+  	la t1, Skelet_Movement_Animation
+  	sw t1, (t0)
 	j MOV_EFETIVADO
 KILL_LR:
 	slli t6,t1,2		# t4 = indice da coluna origem do objeto 
@@ -301,6 +307,10 @@ MOV_LR_FREE: #Label: "Nao ha obstaculos, mova:"
 	sw zero,0(t4)		#!!! O local de origem do player chï¿½o que jï¿½ estava lï¿½ !!!
 	sw a1,0(t2)		#!!! coloca o jogador no novo endereco !!!
 	sb t1,1(a2)		# muda a posicao do jogador na matriz 
+
+	la t0, Current_Player_Animation
+  	la t1, Player_Movement_Animation
+  	sw t1, (t0)
 	j MOV_EFETIVADO	
 THORN_LR:
 	li t6 9
@@ -317,9 +327,6 @@ SEFODEU:
 		ecall
 	
 MOV_EFETIVADO:
-  la t0, Current_Player_Animation
-  la t1, Player_Movement_Animation
-  sw t1, (t0)
 
 	addi s5,s5,-1		# A cada movimento: total de movimentos disponiveis - 1
 	bltz s5, SEFODEU	# Verifa se s5 < 0
