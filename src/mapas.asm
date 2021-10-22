@@ -1,14 +1,13 @@
 .text
 MAPA01:
-	mv s11, ra
 	call CLEAR_MATRIX
 	# Configurar turnos
 	li a0, 9
 	call SET_N_MOV
 	# Colocar jogador
 	li a0, 1
-	li a1, 0
-	li a2, 0
+	li a1, 2
+	li a2, 4
 	call SET_PLAYER
 	# Paredes
 	li a0, 8
@@ -25,35 +24,31 @@ MAPA01:
 	addi a1, a1, -1
 	li a0, 7
 	call SET_V
-
-	#key
+	# key
 	li a1, 2
 	li a2, 2
 	li a0, 3
 	call SET_V
-
-	#close door
+	# close door
 	li a1, 3
 	li a2, 3
 	li a0, 4
 	call SET_V
-
-	#Demon girl
+	# Demon girl
 	li a1, 7
 	li a2, 0
 	li a0, 2
 	call SET_V
-
-
-	mv ra, s11
-	ret
-
+	li a0, 8
+	li a1, 7
+	li a2, 2
+	call SET_V
+	j INIT # O primeiro mapa e carregado antes dos INITS do jogo
 
 MAPA02:
-	mv t1, ra
 	call CLEAR_MATRIX
 	# Configurar turnos
-	li a0, 120
+	li a0, 60
 	call SET_N_MOV
 	# Colocar jogador
 	li a0, 1
@@ -80,9 +75,7 @@ MAPA02:
 	addi a1, a1, -3
 	li a0, 7
 	call SET_V
-	mv ra, t1
-	li s11, 0
-	ret
+	j G_LOOP
 
 BEAT_GAME:
 	li a7, 10

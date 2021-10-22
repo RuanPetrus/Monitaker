@@ -9,7 +9,7 @@ LAST_TILE:	.word 0
 # s1 = back buffer
 # s3 = current frame address
 # s4 = music address
-# s5 = turns
+# s5 = numero de movimentos/turnos
 # s6 = last input time
 # s7 = render permission (1 or 0)
 # s8 = thorn in last move (1 or 0)
@@ -29,7 +29,7 @@ INIT:
 	jal a0, ST_MUS
 	# Movement initialization
 	la s5 N_MOV
-	lb s5 0(s5)	# s11 = numero de movimentos disponiveis
+	lb s5 0(s5)
 	li s6, 0
 
 	#Hud inicialization
