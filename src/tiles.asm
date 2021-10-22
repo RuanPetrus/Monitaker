@@ -8,7 +8,7 @@ GET_V:
 	add t0,t0,t1
 	lw a3,(t0)
 	ret
-
+SET_N_MOV:
 	# Mudar no label
 	la t0, N_MOV
 	sb a0, (t0)
