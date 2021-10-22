@@ -6,7 +6,7 @@ DRAW_P_ANIMATION:
   ble t1, t0, PROX
   li t1, 1
   sw t1, 4(t3)
-  la t3, Player_Default_Animation
+  la t3, Player_Stop_Animation
   sw t3, 0(t2) # colocando a default musica na musica atual
   lw t0 (t3)
   lw t1, 4(t3)
@@ -31,7 +31,7 @@ DRAW_E_ANIMATION:
   ble t1, t0, PROX1
   li t1, 1
   sw t1, 4(t3)
-  la t3, Skelet_Default_Animation
+  la t3, Skelet_Stop_Animation
   sw t3, 0(t2) # colocando a default musica na musica atual
   lw t0 (t3)
   lw t1, 4(t3)
@@ -44,6 +44,9 @@ PROX1:
   addi t1, t1, 4
   add t3, t3, t1
   lw a0, (t3)
-  mv a3, zero
+
+  
+  mv a3, s9
+  xori a3, a3, 1
   j DRAW_TILE
 
