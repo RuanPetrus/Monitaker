@@ -141,6 +141,10 @@ EMPU_UD_KILL:
 	beq t4 t6 KILL_UD
 	li t4 4 
 	beq t4 t6 KILL_UD
+	li t4 11 
+	beq t4 t6 KILL_UD
+	li t4 10 
+	beq t4 t6 KILL_UD
 	j EMPU_UD_FREE
 EMPU_UD_FREE:
 	sw zero,0(t5)		#t5(origem) = 0
@@ -291,6 +295,10 @@ EMPU_LR_KILL:
 	li t6 9 
 	beq t4 t6 KILL_LR
 	li t6 4 
+	beq t4 t6 KILL_LR
+	li t6 10 
+	beq t4 t6 KILL_LR
+	li t6 11 
 	beq t4 t6 KILL_LR
 	j EMPU_LR_FREE
 EMPU_LR_FREE:
