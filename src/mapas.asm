@@ -8,7 +8,18 @@ MAP1LINHA5:	.word 08,00,06,00,00,06,00,08
 MAP1LINHA6:	.word 08,00,06,00,06,00,02,11
 MAP1LINHA7:	.word 11,11,11,11,11,11,11,11
 
-MAP011: .word MAP1LINHA0, MAP1LINHA1, MAP1LINHA2, MAP1LINHA3, MAP1LINHA4, MAP1LINHA5, MAP1LINHA6, MAP1LINHA7 # pontero
+MAP2LINHA0:	.word 11,11,10,10,10,11,11,11
+MAP2LINHA1:	.word 11,10,08,08,08,00,01,11
+MAP2LINHA2:	.word 11,08,00,00,07,00,00,11
+MAP2LINHA3:	.word 10,08,00,07,00,07,11,11
+MAP2LINHA4:	.word 08,00,00,11,11,11,11,10
+MAP2LINHA5:	.word 08,00,06,00,00,06,00,08
+MAP2LINHA6:	.word 08,00,06,00,06,00,02,11
+MAP2LINHA7:	.word 11,11,11,11,11,11,11,11
+
+MAP_1: .word MAP1LINHA0, MAP1LINHA1, MAP1LINHA2, MAP1LINHA3, MAP1LINHA4, MAP1LINHA5, MAP1LINHA6, MAP1LINHA7 # pontero
+MAP_2: .word MAP2LINHA0, MAP2LINHA1, MAP2LINHA2, MAP2LINHA3, MAP2LINHA4, MAP2LINHA5, MAP2LINHA6, MAP2LINHA7 # pontero
+CURRENT_MAP: .word MAP_1
 
 XY2: .byte -1, 0  
 MAP_WIDTH2: .byte 7
@@ -17,46 +28,28 @@ GET_V2:
 	# a1, a2 = x, y
 	slli t1,a1,2
 	slli t2,a2,2
-	la t0, MAP011
+	la t0, CURRENT_MAP
+	lw t0, (t0)
 	add t0,t0,t2
 	lw t0,(t0)
 	add t0,t0,t1
 	lw a3,(t0)
 	ret
 
-MAPA01:
-	#         MAPA
-	# 11 11 11 10 10 10 11 11
-	# 11 11 10 08 08 08 00 01
-	# 11 11 08 00 00 07 00 00
-	# 11 10 08 00 07 00 07 11
-	# 11 08 00 00 11 11 11 06
-	# 11 08 00 06 00 00 06 00
-	# 11 08 00 06 00 06 00 02
-	# 11 11 11 11 11 11 11 11
-	
-	# Configurar turnos
-	li a0, 60
-	call SET_N_MOV
-
-	li a0, 1
-	li a1, 6
-	li a2, 1
-	call SET_PLAYER
-	
+MAP:
 	la t0, XY2
   	li t3, -1
   	sb t3, 0(t0)
 ITER_X2: 
-  la t0, XY2
-  lb t1, 0(t0)
-  la t2, MAP_WIDTH2
-  lb t2, (t2)
+  	la t0, XY2
+  	lb t1, 0(t0)
+  	la t2, MAP_WIDTH2
+  	lb t2, (t2)
 
-  bge t1,t2,INIT
+  	bge t1,t2,INIT
 	sb zero,1(t0)
 	addi t1, t1, 1
-  sb t1, 0(t0)
+  	sb t1, 0(t0)
 ITER_Y2:
   	lb t4, 1(t0)
 
@@ -81,37 +74,49 @@ ITER_Y2:
 		
 	j INIT # O primeiro mapa e carregado antes dos INITS do jogo
 
-MAPA02:
-	call CLEAR_MATRIX
+
+MAPA01:
+	#         MAPA
+	# 11 11 11 10 10 10 11 11
+	# 11 11 10 08 08 08 00 01
+	# 11 11 08 00 00 07 00 00
+	# 11 10 08 00 07 00 07 11
+	# 11 08 00 00 11 11 11 06
+	# 11 08 00 06 00 00 06 00
+	# 11 08 00 06 00 06 00 02
+	# 11 11 11 11 11 11 11 11
+	
 	# Configurar turnos
+	la t0, CURRENT_MAP
+	la t1, MAP_1
+	sw t1, (t0)
+
 	li a0, 60
 	call SET_N_MOV
-	# Colocar jogador
+
 	li a0, 1
-	li a1, 5
-	li a2, 2
+	li a1, 6
+	li a2, 1
 	call SET_PLAYER
-	# Paredes
-	li a0, 8
-	li a1, 4
-	li a2, 5
-	call SET_V
-	addi a2, a2, 1
-	call SET_V
-	addi a1, a1, 3
-	call SET_V
-	addi a2, a2, -1
-	call SET_V
-	li a0, 9
-	addi a1, a1, 1
-	call SET_V
-	addi a2, a2, 1
-	call SET_V
-	# Inimigos
-	addi a1, a1, -3
-	li a0, 7
-	call SET_V
-	j G_LOOP
+	
+	j MAP
+
+
+MAPA02:
+	# Configurar turnos
+	la t0, CURRENT_MAP
+	la t1, MAP_2
+	sw t1, (t0)
+
+	li a0, 60
+	call SET_N_MOV
+
+	li a0, 1
+	li a1, 6
+	li a2, 1
+	call SET_PLAYER
+	
+	j MAP
 
 BEAT_GAME:
 	li a7, 10
