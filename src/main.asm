@@ -14,6 +14,7 @@ LAST_TILE:	.word 0
 # s7 = render permission (1 or 0)
 # s8 = thorn in last move (1 or 0)
 # s9 = side to render
+# s11 = key or no key
 
 # a5 = tmp
 
@@ -82,11 +83,12 @@ M_LOOP:
 .include "../sprites/misc/key.data"
 .include "../sprites/misc/door.data"
 .include "../sprites/misc/stone.data"
+.include "../sprites/misc/spike.data"
 .include "../sprites/misc/ColunaBaixo.data"
 .include "../sprites/misc/ColunaCima.data"
+.include "../sprites/misc/parede.data"
 .include "../sprites/wall.data"
 .include "../sprites/enemy.data"
-.include "../sprites/spike.data"
 .include "../sprites/black.data"
 .include "animation.data"
 .include "../sprites/hud.data"

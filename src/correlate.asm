@@ -118,3 +118,11 @@ COL_PRETO:
 	jal DRAW_TILE
 	mv ra,a4
 	ret
+
+COL_PAREDE:
+	la a0,parede
+	mv a4,ra
+  	mv a3, zero
+	jal DRAW_TILE
+	mv ra,a4
+	ret

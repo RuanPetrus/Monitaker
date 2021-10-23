@@ -13,6 +13,12 @@ MAP_WIN:
 	li t2, 1
 	beq t1, t2, MAPA02
 	li t2, 2
+	beq t1, t2, MAPA03
+	li t2, 3
+	beq t1, t2, MAPA04
+	li t2, 4
+	beq t1, t2, MAPA05
+	li t2, 5
 	bge t1, t2, BEAT_GAME
 
 .include "board.asm" # Matriz base

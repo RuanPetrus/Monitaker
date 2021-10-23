@@ -51,6 +51,8 @@ MOV_UD:
 	beq t6, t4, FIM	# N move
 	li t4, 11			#Parede
 	beq t4 t6 FIM		# N move
+	li t4, 12			#Parede
+	beq t4 t6 FIM		# N move
 	# Empuroes
 	li t4 6			#Bloco
 	beq t4 t6 MOV_UD_EMPU	#Empurra objeto
@@ -145,6 +147,8 @@ EMPU_UD_KILL:
 	beq t4 t6 KILL_UD
 	li t4 10 
 	beq t4 t6 KILL_UD
+	li t4 12 
+	beq t4 t6 KILL_UD
 	j EMPU_UD_FREE
 EMPU_UD_FREE:
 	sw zero,0(t5)		#t5(origem) = 0
@@ -204,6 +208,8 @@ MOV_LR:
 	li t6 10			#Parede
 	beq t4 t6 FIM		# N move
 	li t6 11			#Parede
+	beq t4 t6 FIM		# N move
+	li t6 12			#Parede
 	beq t4 t6 FIM		# N move
 	#Empuroes
 	li t6 6			#Bloco
@@ -299,6 +305,8 @@ EMPU_LR_KILL:
 	li t6 10 
 	beq t4 t6 KILL_LR
 	li t6 11 
+	beq t4 t6 KILL_LR
+	li t6 12 
 	beq t4 t6 KILL_LR
 	j EMPU_LR_FREE
 EMPU_LR_FREE:
