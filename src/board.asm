@@ -8,8 +8,10 @@
 #	portasA = 5	#
 # 	blocos = 6	#
 # 	inimigos = 7	#
-# 	paredes = 8	#
+# 	colunasBaixo = 8	#
+#   colunaCima = 10
 #	espinhos = 9	#
+#   preto = 11
 #########################
 
 

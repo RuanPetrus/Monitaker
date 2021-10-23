@@ -1,12 +1,17 @@
+###########               PLAYER             #############
 Current_Player_Animation: .word Player_Stop_Animation
 Player_Stop_Animation: .word 11, 1, heroStop1, heroStop2, heroStop3, heroStop4, heroStop5, heroStop6, heroStop7, heroStop8, heroStop9, heroStop10, heroStop11   
 Player_Movement_Animation: .word 4, 1, heroMove1, heroMove2, heroMove3, heroMove4
 Player_Kick_Animation: .word 7, 1, heroKick1, heroKick2, heroKick3, heroKick4, heroKick5, heroKick6, heroKick7
-Player_Win_Animation: .word, 7, 1, heroWin1, heroWin2, heroWin3, heroWin4, heroWin5, heroWin6
-
+Player_Win_Animation: .word, 7, 1, heroWin1, heroWin2, heroWin3, heroWin4, heroWin5, heroWin6, heroWin7
+Player_Door_Animation: .word, 6, 1, heroDoor1, heroDoor2, heroDoor3, heroDoor4, heroDoor5, heroDoor6
+###########               ENEMY             #############
 Current_Skelet_Animation: .word Skelet_Stop_Animation
 Skelet_Stop_Animation: .word 12, 1, skeletonStop1, skeletonStop2, skeletonStop3, skeletonStop4, skeletonStop5, skeletonStop6, skeletonStop7, skeletonStop8, skeletonStop9 ,skeletonStop10, skeletonStop11, skeletonStop12
 Skelet_Movement_Animation: .word 6, 1, skeletonMove1, skeletonMove2, skeletonMove3, skeletonMove4, skeletonMove5, skeletonMove6
+###########               DEMON             #############
+Current_Demon_Animation: .word Demon_Stop_Animation
+Demon_Stop_Animation: .word 12, 1, malina1, malina2, malina3, malina4, malina5, malina6, malina7, malina8, malina9, malina10, malina11, malina12
 
 ###########               PLAYER             #############
 #PLAYER STOP
@@ -46,6 +51,14 @@ Skelet_Movement_Animation: .word 6, 1, skeletonMove1, skeletonMove2, skeletonMov
 .include "../sprites/Player/heroWin/heroWin6.data"
 .include "../sprites/Player/heroWin/heroWin7.data"
 
+#PLAYER DOOR
+.include "../sprites/Player/heroDoor/heroDoor1.data"
+.include "../sprites/Player/heroDoor/heroDoor2.data"
+.include "../sprites/Player/heroDoor/heroDoor3.data"
+.include "../sprites/Player/heroDoor/heroDoor4.data"
+.include "../sprites/Player/heroDoor/heroDoor5.data"
+.include "../sprites/Player/heroDoor/heroDoor6.data"
+
 ###########               ENEMY             #############
 #ENEMY STOP
 .include "../sprites/skeleto/skeletonStop/skeletonStop1.data"
@@ -69,3 +82,17 @@ Skelet_Movement_Animation: .word 6, 1, skeletonMove1, skeletonMove2, skeletonMov
 .include "../sprites/skeleto/skeletonMove/skeletonMove5.data"
 .include "../sprites/skeleto/skeletonMove/skeletonMove6.data"
 
+###########               DEMON             #############
+#DEMON STOP
+.include "../sprites/malina/malina1.data"
+.include "../sprites/malina/malina2.data"
+.include "../sprites/malina/malina3.data"
+.include "../sprites/malina/malina4.data"
+.include "../sprites/malina/malina5.data"
+.include "../sprites/malina/malina6.data"
+.include "../sprites/malina/malina7.data"
+.include "../sprites/malina/malina8.data"
+.include "../sprites/malina/malina9.data"
+.include "../sprites/malina/malina10.data"
+.include "../sprites/malina/malina11.data"
+.include "../sprites/malina/malina12.data"

@@ -3,6 +3,7 @@ CUR_MAP: .byte 0 # Index do mapa atual
 
 .text
 MAP_WIN:
+
 	la t0, CUR_MAP
 	lb t1, (t0)
 	addi t1, t1, 1

@@ -1,48 +1,84 @@
+.data
+MAP1LINHA0:	.word 11,11,10,10,10,11,11,11
+MAP1LINHA1:	.word 11,10,08,08,08,00,01,11
+MAP1LINHA2:	.word 11,08,00,00,07,00,00,11
+MAP1LINHA3:	.word 10,08,00,07,00,07,11,11
+MAP1LINHA4:	.word 08,00,00,11,11,11,11,10
+MAP1LINHA5:	.word 08,00,06,00,00,06,00,08
+MAP1LINHA6:	.word 08,00,06,00,06,00,02,11
+MAP1LINHA7:	.word 11,11,11,11,11,11,11,11
+
+MAP011: .word MAP1LINHA0, MAP1LINHA1, MAP1LINHA2, MAP1LINHA3, MAP1LINHA4, MAP1LINHA5, MAP1LINHA6, MAP1LINHA7 # pontero
+
+XY2: .byte -1, 0  
+MAP_WIDTH2: .byte 7
 .text
+GET_V2:	
+	# a1, a2 = x, y
+	slli t1,a1,2
+	slli t2,a2,2
+	la t0, MAP011
+	add t0,t0,t2
+	lw t0,(t0)
+	add t0,t0,t1
+	lw a3,(t0)
+	ret
+
 MAPA01:
-	call CLEAR_MATRIX
+	#         MAPA
+	# 11 11 11 10 10 10 11 11
+	# 11 11 10 08 08 08 00 01
+	# 11 11 08 00 00 07 00 00
+	# 11 10 08 00 07 00 07 11
+	# 11 08 00 00 11 11 11 06
+	# 11 08 00 06 00 00 06 00
+	# 11 08 00 06 00 06 00 02
+	# 11 11 11 11 11 11 11 11
+	
 	# Configurar turnos
-	li a0, 9
+	li a0, 60
 	call SET_N_MOV
-	# Colocar jogador
+
 	li a0, 1
-	li a1, 2
-	li a2, 4
+	li a1, 6
+	li a2, 1
 	call SET_PLAYER
-	# Paredes
-	li a0, 8
-	li a1, 3
-	li a2, 5
+	
+	la t0, XY2
+  	li t3, -1
+  	sb t3, 0(t0)
+ITER_X2: 
+  la t0, XY2
+  lb t1, 0(t0)
+  la t2, MAP_WIDTH2
+  lb t2, (t2)
+
+  bge t1,t2,INIT
+	sb zero,1(t0)
+	addi t1, t1, 1
+  sb t1, 0(t0)
+ITER_Y2:
+  	lb t4, 1(t0)
+
+  	bgt t4,t2,ITER_X2
+
+  	mv a1, t1
+  	mv a2, t4
+	call GET_V2
+	mv a0, a3
 	call SET_V
-	addi a2, a2, 1
-	call SET_V
-	addi a1, a1, 2
-	call SET_V
-	addi a2, a2, -1
-	call SET_V
-	# Inimigos
-	addi a1, a1, -1
-	li a0, 7
-	call SET_V
-	# key
-	li a1, 2
-	li a2, 2
-	li a0, 3
-	call SET_V
-	# close door
-	li a1, 3
-	li a2, 3
-	li a0, 4
-	call SET_V
-	# Demon girl
-	li a1, 7
-	li a2, 0
-	li a0, 2
-	call SET_V
-	li a0, 8
-	li a1, 7
-	li a2, 2
-	call SET_V
+	
+  	la t0, XY2
+  	lb t1, (t0)
+  	lb t4, 1(t0)
+  	addi t4, t4, 1
+  	sb t4, 1(t0)
+
+  	la t2, MAP_WIDTH2
+  	lb t2, 0(t2)
+
+	j ITER_Y2
+		
 	j INIT # O primeiro mapa e carregado antes dos INITS do jogo
 
 MAPA02:

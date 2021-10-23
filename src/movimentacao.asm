@@ -41,12 +41,16 @@ MOV_UD:
 	
 	# Comparacoes de Colisoes Permitidas ou nao:
 	# Free: 
-	beq t6 zero MOV_UD_FREE	#Permite mover se tiver chao
-	li t4 5		# porta Aberta
-	beq t6 t4 MOV_UD_FREE	#Permite mover se tiver porta aberta
+	beq t6, zero, MOV_UD_FREE	#Permite mover se tiver chao
+	li t4, 5		# porta Aberta
+	beq t6, t4 MOV_UD_FREE	#Permite mover se tiver porta aberta
 	# Obstaculo: NAO MOVE
-	li t4 8		#Parede
-	beq t6 t4 FIM		# N move
+	li t4, 8		#Parede
+	beq t6, t4, FIM	
+	li t4, 10		#Parede
+	beq t6, t4, FIM	# N move
+	li t4, 11			#Parede
+	beq t4 t6 FIM		# N move
 	# Empuroes
 	li t4 6			#Bloco
 	beq t4 t6 MOV_UD_EMPU	#Empurra objeto
@@ -193,6 +197,10 @@ MOV_LR:
 	#Obstaculo: NAO MOVE
 	li t6 8			#Parede
 	beq t4 t6 FIM		# N move
+	li t6 10			#Parede
+	beq t4 t6 FIM		# N move
+	li t6 11			#Parede
+	beq t4 t6 FIM		# N move
 	#Empuroes
 	li t6 6			#Bloco
 	beq t4 t6 MOV_LR_EMPU	#Empurra objeto
@@ -224,6 +232,9 @@ OPEN_DOOR_LR:
 	li t6 5
 	sw t6,0(t2)		#Transforma porta fechada em aberta
 	li s11 0			#com chave, abre porta
+	la t0, Current_Player_Animation
+  	la t1, Player_Door_Animation
+  	sw t1, (t0)
 	j FIM
 DANO_LR:
 	slli t4,t0,2		# t4 = endereï¿½o de coluna de origem

@@ -78,7 +78,12 @@ M_LOOP:
 
 .data
 .include "../sprites/player.data"
-.include "../sprites/floor1.data"
+.include "../sprites/misc/floor.data"
+.include "../sprites/misc/key.data"
+.include "../sprites/misc/door.data"
+.include "../sprites/misc/stone.data"
+.include "../sprites/misc/ColunaBaixo.data"
+.include "../sprites/misc/ColunaCima.data"
 .include "../sprites/wall.data"
 .include "../sprites/enemy.data"
 .include "../sprites/spike.data"

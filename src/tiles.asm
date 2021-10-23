@@ -112,7 +112,9 @@ CORRELATE:
 	li t3,1
 	beq t2,t3,COL_PLAYER
 	li t3,8
-	beq t2,t3,COL_WALL
+	beq t2,t3,COL_COLUNA_B
+	li t3,10
+	beq t2,t3,COL_COLUNA_C
 	li t3,7
 	beq t2,t3,COL_ENEMY
 	li t3,9
@@ -125,6 +127,11 @@ CORRELATE:
 	beq t2,t3,COL_OPEN_DOOR
 	li t3,2
 	beq t2,t3,COL_DEMON_GIRL
+	li t3,6
+	beq t2,t3,COL_BLOCK
+	li t3,11
+	beq t2,t3,COL_PRETO
+
 
 # a0 = sprite we'll be drawing (28x28)
 # a1 = tile y coordinate
