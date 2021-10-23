@@ -131,6 +131,8 @@ CORRELATE:
 	beq t2,t3,COL_BLOCK
 	li t3,11
 	beq t2,t3,COL_PRETO
+	li t3,12
+	beq t2,t3,COL_PAREDE
 
 
 # a0 = sprite we'll be drawing (28x28)

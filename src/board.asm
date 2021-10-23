@@ -12,6 +12,7 @@
 #   colunaCima = 10
 #	espinhos = 9	#
 #   preto = 11
+#   parede = 12
 #########################
 
 
