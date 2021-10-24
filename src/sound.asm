@@ -33,8 +33,8 @@ P_MUS:	lw t0, 12(s4)		#t0 = last_played
 	beq t0, zero, P_CONT	#if last played == 0 THEN continue loop (firt ocurrence)
 	
 	csrr t1, time		#t1 = current time
-	lw t2, 16(s4)		#t2 = last_note_duration
-	
+	lw t2, 16(s4)		 #t2 = last_note_duration            
+
 	sub t0, t1, t0		#t0 = current time - last played note time
 	bge t0, t2, P_CONT	#if t0 > last nome duration play next note
 	ret
@@ -61,12 +61,14 @@ P_NOTE:	lw t0, 8(s4)		#t0 = Note conter
 	lw a2, 20(s4)		#Read the instrument number
 	lw a3, 24(s4)		#Read the instrument number
 	lw a0, 0(t1)		#Read the value of the note
-	lw a1, 4(t2)		#Read the duration of the note
+	lw a1, 4(t1)		#Read the duration of the note
+
+	sw a1, 16(s4)		#Store the value of the last duration
 	
 	li a7, 31		#Define the syscall
 	ecall			#Play the note
 	
-	sw a1, 16(s4)		#Store the value of the last duration
+	
 	
 	csrr t3, time		#t3 = current time
 	sw t3, 12(s4)		#Store the current time in last played

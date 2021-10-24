@@ -106,7 +106,16 @@ P0_EMPU_UD:
 	j P2_EMPU_UD
 P01_EMPU_UD:
 	addi a0 a0 -1			# se negativo, -1 para tras	
-P2_EMPU_UD:	
+P2_EMPU_UD:
+	la t4, Current_Player_Animation
+  	la a7, Player_Kick_Animation
+  	sw a7, (t4)
+	la t4, Current_Skelet_Animation
+  	la a7, Skelet_Movement_Animation
+  	sw a7, (t4)
+	la s4, M_KICK
+
+
 	add a0 t0 a0		# a0 = linha destino do bloco/inimigo
 				# t1 = linha origem do bloco/inimigo 	
 	#Verificando limites da matriz
@@ -159,6 +168,8 @@ KILL_UD:
 	j MOV_EFETIVADO
 	
 MOV_UD_FREE:
+	la s4, M_MOVE
+
 	add t6,t2,t3		# t6 = endereco original (linhax + offset da coluna)
 	bgt s8 zero THORN_UD	# verifica se existia um espinho de onde o jogador está se retirando
 	sw zero,0(t6)		#t6 = 0
@@ -269,6 +280,15 @@ P0_EMPU_LR:
 P01_EMPU_LR:
 	addi a0 a0 -1			# se negativo, -1 para tras	
 P2_EMPU_LR:	
+	la t4, Current_Player_Animation
+  	la t5, Player_Kick_Animation
+  	sw t5, (t4)
+	la t4, Current_Skelet_Animation
+  	la t5, Skelet_Movement_Animation
+  	sw t5, (t4)
+	la s4, M_KICK
+
+
 	add a0 t0 a0		# a0 = indice coluna destino do bloco/inimigo (t0 = index coluna origem)	
 				# t1 = coluna de destino do bloco 
 	#Verificando limites da matriz
@@ -310,16 +330,12 @@ EMPU_LR_KILL:
 	beq t4 t6 KILL_LR
 	j EMPU_LR_FREE
 EMPU_LR_FREE:
+
 	slli t6,t1,2		# t4 = offset index coluna origem
 	add t6,t6,t3		# t4 = endereco original do objeto
 	sw zero,0(t6)		# Coloca 0 onde o bloco estava
 	sw a1,0(a0)		# muda posicao do bloco na matriz
-	la t0, Current_Player_Animation
-  	la t1, Player_Kick_Animation
-  	sw t1, (t0)
-	la t0, Current_Skelet_Animation
-  	la t1, Skelet_Movement_Animation
-  	sw t1, (t0)
+	
 	j MOV_EFETIVADO
 KILL_LR:
 	slli t6,t1,2		# t4 = indice da coluna origem do objeto 
@@ -328,6 +344,8 @@ KILL_LR:
 	j MOV_EFETIVADO
 	
 MOV_LR_FREE: #Label: "Nao ha obstaculos, mova:"
+	la s4, M_MOVE
+
 	slli t4,t0,2		# t4 = endereï¿½o de coluna de origem
 	add t4,t4,t3		# t4 = endereco original do jogador
 	bgt s8 zero THORN_LR		# verifica se existia um espinho de onde o jogador está se retirando
