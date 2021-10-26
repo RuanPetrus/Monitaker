@@ -34,5 +34,6 @@ Op1:	la a0 Opcao_1
 Op2:	la a0 Opcao_2
 	li a7 4
 	ecall
+	call MAP_LOAD # Recarregar o mapa atual
 	jal G_LOOP
 	jr a6
