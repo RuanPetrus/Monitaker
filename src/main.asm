@@ -59,6 +59,10 @@ G_LOOP:
 	j G_LOOP
 
 INIT_M:
+	la t0, OPCAO
+	li t1, 1
+	sw t1, (t0)
+
 	la a0, D_IMAGE1
 	lw a0, (a0)
 	li a1, 0
