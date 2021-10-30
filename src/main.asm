@@ -58,6 +58,13 @@ G_LOOP:
 	jal a6, GLOBAL_DRAW
 	j G_LOOP
 
+INIT_M:
+	la a0, D_IMAGE1
+	lw a0, (a0)
+	li a1, 0
+	li a2, 0
+	call RENDER
+	call SWAP_FRAMES
 M_LOOP: 
 	jal a6,KEY2		# le o teclado	blocking
 	jal P_MUS	
@@ -92,3 +99,6 @@ M_LOOP:
 .include "../sprites/black.data"
 .include "animation.data"
 .include "../sprites/hud.data"
+
+.include "../sprites/menu/MORTE.data"
+.include "../sprites/menu/reset_and_sucess_pass.data"

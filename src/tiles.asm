@@ -16,6 +16,26 @@ SET_N_MOV:
 	mv s5, a0
 	ret
 
+SET_OPCAO_CERTA:
+	la t0, OPCAO_CERTA
+	sw a0, (t0)
+	ret
+
+SET_IMAGES:
+	la t0 , D_IMAGE1
+	sw a0, (t0)
+
+	la t0 , D_IMAGE2
+	sw a1, (t0)
+
+	la t0 , D_IMAGE_WIN
+	sw a2, (t0)
+
+	la t0 , D_IMAGE_LOS
+	sw a3, (t0)
+
+	ret
+
 SET_PLAYER:
 	# Somente o player e invertido.
 	# a2 = x; a1 = y PARA O PLAYER

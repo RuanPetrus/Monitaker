@@ -69,7 +69,7 @@ MOV_UD:
 	beq t4 t6 OPEN_DOOR_UD	
 	#Passou de fase
 	li t4, 2
-	beq t4, t6 MAP_WIN
+	beq t4, t6 INIT_M
 COLETA_UD:
 	add t6,t2,t3		# t6 = endereco original (linhax + offset da coluna)
 	bgt s8 zero THORN_UD	# verifica se existia um espinho de onde o jogador estÃ¡ se retirando
@@ -238,7 +238,7 @@ MOV_LR:
 	beq t4 t6 OPEN_DOOR_LR	#Verificar p/ abertura de porta
 	#Passou de fase
 	li t6, 2
-	beq t4 t6 MAP_WIN
+	beq t4 t6 INIT_M
 COLETA_LR:
 	slli t4,t0,2		# t4 = endereÃ¯Â¿Â½o de coluna de origem
 	add t4,t4,t3		# t4 = endereco original do jogador
@@ -368,8 +368,31 @@ SEFODEU:
 	la a0 morte
 	li a7 4
 	ecall
-	li a7 10
-		ecall
+	la a0, MORTE
+	li a1, 0
+	li a2, 0
+	call RENDER
+	call SWAP_FRAMES
+	li t0, 2000
+	csrr t1, time
+TEMPO:
+	csrr t2, time
+	sub t2, t2, t1
+	blt t2, t0, TEMPO
+
+	
+	la a0, reset_and_sucess_pass
+	li a1, 0
+	li a2, 0
+	call RENDER
+	call SWAP_FRAMES
+	li t0, 500
+	csrr t1, time
+TEMPO2:
+	csrr t2, time
+	sub t2, t2, t1
+	blt t2, t0, TEMPO2
+	j MAP_LOAD
 	
 MOV_EFETIVADO:
 

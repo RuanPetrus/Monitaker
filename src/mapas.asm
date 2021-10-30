@@ -125,6 +125,16 @@ MAPA01:
 	call SET_N_MOV
 
 	li a0, 1
+	call SET_OPCAO_CERTA
+
+	la a0, dialog10
+	la a1, dialog11
+	la a2, dialog12
+	la a3, MORTE
+	call SET_IMAGES
+
+
+	li a0, 1
 	li a1, 6
 	li a2, 1
 	call SET_PLAYER
@@ -220,3 +230,10 @@ ITER_VER:
 CLEAR_MATRIX_END:
 	mv ra, a6
 	ret
+
+
+
+.data
+.include "../sprites/menu/dialog10.data"
+.include "../sprites/menu/dialog11.data"
+.include "../sprites/menu/dialog12.data"

@@ -97,4 +97,15 @@ EMPU_UD_FIM:
 FIM:
 	jr a6
 RESET:
-	jr a6
+	la a0, reset_and_sucess_pass
+	li a1, 0
+	li a2, 0
+	call RENDER
+	call SWAP_FRAMES
+	li t0, 500
+	csrr t1, time
+TEMPO2:
+	csrr t2, time
+	sub t2, t2, t1
+	blt t2, t0, TEMPO2
+	j MAP_LOAD
