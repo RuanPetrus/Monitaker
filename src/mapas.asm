@@ -114,7 +114,7 @@ ITER_Y2:
 	li a0, 22
 	call SET_N_MOV
 
-	li a0, 1
+	li a0, 2
 	call SET_OPCAO_CERTA
 
 	la a0, dialog10
