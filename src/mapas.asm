@@ -1,48 +1,48 @@
 .data
 MAP1LINHA0:	.word 11,11,10,10,10,11,11,11
-MAP1LINHA1:	.word 11,10,08,08,08,00,01,11
-MAP1LINHA2:	.word 11,08,00,00,07,00,00,11
-MAP1LINHA3:	.word 10,08,00,07,00,07,11,11
-MAP1LINHA4:	.word 08,00,00,11,11,11,11,10
-MAP1LINHA5:	.word 08,00,06,00,00,06,00,08
-MAP1LINHA6:	.word 08,00,06,00,06,00,02,11
+MAP1LINHA1:	.word 11,10, 8, 8, 8, 0, 1,11
+MAP1LINHA2:	.word 11, 8, 0, 0, 7, 0, 0,11
+MAP1LINHA3:	.word 10, 8, 0, 7, 0, 7,11,11
+MAP1LINHA4:	.word  8, 0, 0,11,11,11,11,10
+MAP1LINHA5:	.word  8, 0, 6, 0, 0, 6, 0, 8
+MAP1LINHA6:	.word  8, 0, 6, 0, 6, 0, 2,11
 MAP1LINHA7:	.word 11,11,11,11,11,11,11,11
 
 MAP2LINHA0:	.word 10,11,11,11,11,10,11,11
-MAP2LINHA1:	.word 08,00,00,00,00,08,11,11
-MAP2LINHA2:	.word 08,07,11,09,09,00,00,11
-MAP2LINHA3:	.word 00,09,11,11,06,06,06,11
-MAP2LINHA4:	.word 00,00,11,11,00,00,00,10
-MAP2LINHA5:	.word 01,00,11,10,00,07,00,08
-MAP2LINHA6:	.word 11,11,11,08,02,00,07,11
+MAP2LINHA1:	.word  8, 0, 0, 0, 0, 8,11,11
+MAP2LINHA2:	.word  8, 7,11, 9, 9, 0, 0,11
+MAP2LINHA3:	.word  0, 9,11,11, 6, 6, 6,11
+MAP2LINHA4:	.word  0, 0,11,11, 0, 0, 0,10
+MAP2LINHA5:	.word  1, 0,11,10, 0, 7, 0, 8
+MAP2LINHA6:	.word 11,11,11, 8, 2, 0, 7,11
 MAP2LINHA7:	.word 11,11,11,11,11,11,11,11
 
 MAP3LINHA0:	.word 11,11,10,11,11,11,11,11
-MAP3LINHA1:	.word 11,11,08,00,00,02,00,10
-MAP3LINHA2:	.word 11,11,08,12,12,12,04,08
-MAP3LINHA3:	.word 11,11,00,09,09,00,00,01
-MAP3LINHA4:	.word 11,11,09,12,09,12,00,00
-MAP3LINHA5:	.word 11,10,00,00,07,09,09,12
-MAP3LINHA6:	.word 03,08,09,12,09,12,00,11
-MAP3LINHA7:	.word 00,00,00,00,00,07,00,11
+MAP3LINHA1:	.word 11,11, 8, 0, 0, 2, 0,10
+MAP3LINHA2:	.word 11,11, 8,12,12,12, 4, 8
+MAP3LINHA3:	.word 11,11, 0, 9, 9, 0, 0, 1
+MAP3LINHA4:	.word 11,11, 9,12, 9,12, 0, 0
+MAP3LINHA5:	.word 11,10, 0, 0, 7, 9, 9,12
+MAP3LINHA6:	.word  3, 8, 9,12, 9,12, 0,11
+MAP3LINHA7:	.word  0, 0, 0, 0, 0, 7, 0,11
 
 MAP4LINHA0:	.word 11,11,11,11,11,11,10,11
-MAP4LINHA1:	.word 11,11,11,11,02,00,08,10
-MAP4LINHA2:	.word 11,11,11,10,00,04,00,08
-MAP4LINHA3:	.word 11,00,03,08,06,06,06,12
-MAP4LINHA4:	.word 11,07,06,00,07,06,00,11
-MAP4LINHA5:	.word 10,00,11,07,00,00,01,11
-MAP4LINHA6:	.word 08,09,11,12,09,11,11,11
-MAP4LINHA7:	.word 12,09,09,09,09,11,11,11
+MAP4LINHA1:	.word 11,11,11,11, 2, 0, 8,10
+MAP4LINHA2:	.word 11,11,11,10, 0, 4, 0, 8
+MAP4LINHA3:	.word 11, 0, 3, 8, 6, 6, 6,12
+MAP4LINHA4:	.word 11, 7, 6, 0, 7, 6, 0,11
+MAP4LINHA5:	.word 10, 0,11, 7, 0, 0, 1,11
+MAP4LINHA6:	.word  8, 9,11,12, 9,11,11,11
+MAP4LINHA7:	.word 12, 9, 9, 9, 9,11,11,11
 
 MAP5LINHA0:	.word 11,11,11,11,11,10,11,11
-MAP5LINHA1:	.word 10,11,00,02,06,08,10,11
-MAP5LINHA2:	.word 08,10,00,00,00,00,08,11
-MAP5LINHA3:	.word 08,08,06,04,06,10,08,11
-MAP5LINHA4:	.word 06,00,06,00,00,08,00,12
-MAP5LINHA5:	.word 00,00,06,06,06,00,00,03
-MAP5LINHA6:	.word 06,06,06,00,00,06,06,00
-MAP5LINHA7:	.word 01,00,06,00,00,06,00,11
+MAP5LINHA1:	.word 10,11, 0, 2, 6, 8,10,11
+MAP5LINHA2:	.word  8,10, 0, 0, 0, 0, 8,11
+MAP5LINHA3:	.word  8, 8, 6, 4, 6,10, 8,11
+MAP5LINHA4:	.word  6, 0, 6, 0, 0, 8, 0,12
+MAP5LINHA5:	.word  0, 0, 6, 6, 6, 0, 0, 3
+MAP5LINHA6:	.word  6, 6, 6, 0, 0, 6, 6, 0
+MAP5LINHA7:	.word  1, 0, 6, 0, 0, 6, 0,11
 
 MAP_1: .word MAP1LINHA0, MAP1LINHA1, MAP1LINHA2, MAP1LINHA3, MAP1LINHA4, MAP1LINHA5, MAP1LINHA6, MAP1LINHA7 # pontero
 MAP_2: .word MAP2LINHA0, MAP2LINHA1, MAP2LINHA2, MAP2LINHA3, MAP2LINHA4, MAP2LINHA5, MAP2LINHA6, MAP2LINHA7 # pontero
@@ -76,7 +76,7 @@ ITER_X2:
   	la t2, MAP_WIDTH2
   	lb t2, (t2)
 
-  	bge t1,t2,INIT
+  	bge t1,t2,INIT_G
 	sb zero,1(t0)
 	addi t1, t1, 1
   	sb t1, 0(t0)
@@ -102,20 +102,10 @@ ITER_Y2:
 
 	j ITER_Y2
 		
-	j INIT # O primeiro mapa e carregado antes dos INITS do jogo
+	j INIT_G # O primeiro mapa e carregado antes dos INIT_GS do jogo
 
 
-MAPA01:
-	#         MAPA
-	# 11 11 11 10 10 10 11 11
-	# 11 11 10 08 08 08 00 01
-	# 11 11 08 00 00 07 00 00
-	# 11 10 08 00 07 00 07 11
-	# 11 08 00 00 11 11 11 06
-	# 11 08 00 06 00 00 06 00
-	# 11 08 00 06 00 06 00 02
-	# 11 11 11 11 11 11 11 11
-	
+ MAPA01:	
 	# Configurar turnos
 	la t0, CURRENT_MAP
 	la t1, MAP_1
@@ -142,7 +132,7 @@ MAPA01:
 	j MAP
 
 
-MAPA02:
+ MAPA02:
 	# Configurar turnos
 	la t0, CURRENT_MAP
 	la t1, MAP_2
@@ -152,13 +142,22 @@ MAPA02:
 	call SET_N_MOV
 
 	li a0, 1
+	call SET_OPCAO_CERTA
+
+	la a0, dialog20
+	la a1, dialog21
+	la a2, dialog22
+	la a3, MORTE
+	call SET_IMAGES
+
+	li a0, 1
 	li a1, 0
 	li a2, 5
 	call SET_PLAYER
 	
 	j MAP
 
-MAPA03:
+ MAPA03:
 	# Configurar turnos
 	la t0, CURRENT_MAP
 	la t1, MAP_3
@@ -167,6 +166,15 @@ MAPA03:
 	li a0, 32
 	call SET_N_MOV
 
+	li a0, 2
+	call SET_OPCAO_CERTA
+
+	la a0, dialog40
+	la a1, dialog41
+	la a2, dialog42
+	la a3, MORTE
+	call SET_IMAGES
+
 	li a0, 1
 	li a1, 7
 	li a2, 3
@@ -174,7 +182,7 @@ MAPA03:
 	
 	j MAP
 
-MAPA04:
+ MAPA04:
 	# Configurar turnos
 	la t0, CURRENT_MAP
 	la t1, MAP_4
@@ -184,13 +192,22 @@ MAPA04:
 	call SET_N_MOV
 
 	li a0, 1
+	call SET_OPCAO_CERTA
+
+	la a0, dialog30
+	la a1, dialog31
+	la a2, dialog32
+	la a3, MORTE
+	call SET_IMAGES
+
+	li a0, 1
 	li a1, 6
 	li a2, 5
 	call SET_PLAYER
 	
 	j MAP
 
-MAPA05:
+ MAPA05:
 	# Configurar turnos
 	la t0, CURRENT_MAP
 	la t1, MAP_5
@@ -200,6 +217,15 @@ MAPA05:
 	call SET_N_MOV
 
 	li a0, 1
+	call SET_OPCAO_CERTA
+
+	la a0, dialog50
+	la a1, dialog50
+	la a2, dialog51
+	la a3, dialog51
+	call SET_IMAGES
+
+	li a0, 1
 	li a1, 0
 	li a2, 7
 	call SET_PLAYER
@@ -207,6 +233,15 @@ MAPA05:
 	j MAP
 
 BEAT_GAME:
+
+	la a0, creditosfinais
+	la a1, creditosfinais
+	la a2, creditosfinais
+	la a3, creditosfinais
+	call SET_IMAGES
+
+	j INIT_O
+
 	li a7, 10
 	ecall
 
@@ -231,9 +266,3 @@ CLEAR_MATRIX_END:
 	mv ra, a6
 	ret
 
-
-
-.data
-.include "../sprites/menu/dialog10.data"
-.include "../sprites/menu/dialog11.data"
-.include "../sprites/menu/dialog12.data"

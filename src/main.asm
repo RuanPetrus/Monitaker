@@ -18,8 +18,6 @@ LAST_TILE:	.word 0
 
 # a5 = tmp
 
-call MAPA01
-
 INIT:
 	jal INIT_VIDEO
 	li s7,1
@@ -28,11 +26,44 @@ INIT:
 	la t1, M_BG	
 	sw t1, 0(t0)	
 	jal a0, ST_MUS
+
+
+jal a6, PRIMEIRAS_ANIMACOES
+
+
+INIT_I:
+
+	la a1, MENU01
+	la a0, MENU02
+	call SET_IMAGES
+
+	la t0, OPCAO
+	li t1, 1
+	sw t1, (t0)
+
+	la a0, D_IMAGE1
+	lw a0, (a0)
+	li a1, 0
+	li a2, 0
+	call RENDER
+	call SWAP_FRAMES
+I_LOOP: 
+	jal a6,KEY3		# le o teclado	blocking
+	#jal P_MUS	
+	j I_LOOP
+
+HISTORIA:
+	jal a6, D_HISTORIA
+
+call MAPA01
+
+INIT_G:
 	# Movement initialization
 	la s5 N_MOV
 	lb s5 0(s5)
 	li s6, 0
 
+INIT_HUD:
 	#Hud inicialization
 	la a0, hud
 	li a1, 0
@@ -58,7 +89,29 @@ G_LOOP:
 	jal a6, GLOBAL_DRAW
 	j G_LOOP
 
+INIT_O:
+	la t0, OPCAO
+	li t1, 1
+	sw t1, (t0)
+
+	la a0, D_IMAGE1
+	lw a0, (a0)
+	li a1, 0
+	li a2, 0
+	call RENDER
+	call SWAP_FRAMES
+O_LOOP: 
+	jal a6,KEY2		# le o teclado	blocking
+	#jal P_MUS	
+	j O_LOOP
+
+
 INIT_M:
+	la a0, pause0
+	la a1, pause1
+	la a2, pause2
+	call SET_IMAGES
+
 	la t0, OPCAO
 	li t1, 1
 	sw t1, (t0)
@@ -70,9 +123,11 @@ INIT_M:
 	call RENDER
 	call SWAP_FRAMES
 M_LOOP: 
-	jal a6,KEY2		# le o teclado	blocking
-	jal P_MUS	
+	jal a6,KEY4		# le o teclado	blocking
+	#jal P_MUS	
 	j M_LOOP
+
+
 	
 	
 .include "tiles.asm"
@@ -83,10 +138,9 @@ M_LOOP:
 .include "poling01.asm"
 .include "menu-blocking.asm"
 .include "correlate.asm"
-.include "print_int.asm"
-.include "SYSTEMv21.s"
 .include "animation.asm"
 .include "map_manager.asm"
+.include "historyAnimation.asm"
 
 .data
 .include "../sprites/player.data"
@@ -106,3 +160,48 @@ M_LOOP:
 
 .include "../sprites/menu/MORTE.data"
 .include "../sprites/menu/reset_and_sucess_pass.data"
+
+#Dialogos MAP1
+.include "../sprites/menu/dialog10.data"
+.include "../sprites/menu/dialog11.data"
+.include "../sprites/menu/dialog12.data"
+
+#Dialogos MAP2
+.include "../sprites/menu/dialog20.data"
+.include "../sprites/menu/dialog21.data"
+.include "../sprites/menu/dialog22.data"
+
+#Dialogos MAP3
+.include "../sprites/menu/dialog30.data"
+.include "../sprites/menu/dialog31.data"
+.include "../sprites/menu/dialog32.data"
+
+#Dialogos MAP4
+.include "../sprites/menu/dialog40.data"
+.include "../sprites/menu/dialog41.data"
+.include "../sprites/menu/dialog42.data"
+
+#Dialogos MAP5
+.include "../sprites/menu/dialog50.data"
+.include "../sprites/menu/dialog51.data"
+
+#MENUS
+.include "../sprites/menu/creditosfinais.data"
+.include "../sprites/menu/alerta_inicial.data"
+.include "../sprites/menu/MENU01.data"
+.include "../sprites/menu/MENU02.data"
+
+#HISTORIA
+.include "../sprites/menu/history0.data"
+.include "../sprites/menu/history1.data"
+.include "../sprites/menu/history2.data"
+.include "../sprites/menu/history3.data"
+
+#PAUSE
+.include "../sprites/menu/pause0.data"
+.include "../sprites/menu/pause1.data"
+.include "../sprites/menu/pause2.data"
+
+.text
+.include "print_int.asm"
+.include "SYSTEMv21.s"

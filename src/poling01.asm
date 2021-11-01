@@ -38,7 +38,12 @@ KEY1:
 	beq t2 t3 MANHA
 	li t3 0x52            #R
 	beq t2 t3 RESET
+	li t3 0x1b            #ESC
+	beq t2 t3 MENU_OPCAO
 	j FIM
+
+MENU_OPCAO:
+	j INIT_M
 
 #A seguir, os procedimentos definidos:	
 LEFT: 	
@@ -84,7 +89,7 @@ DOWN:
 	la a4 area
 	j MOV_UD
 MANHA:	
-	j M_LOOP	
+	j INIT_O	
 	#jr a6
 EMPU_LR_FIM: 	
 	li t6 7
@@ -104,8 +109,8 @@ RESET:
 	call SWAP_FRAMES
 	li t0, 500
 	csrr t1, time
-TEMPO2:
+TEMPO666:
 	csrr t2, time
 	sub t2, t2, t1
-	blt t2, t0, TEMPO2
+	blt t2, t0, TEMPO666
 	j MAP_LOAD

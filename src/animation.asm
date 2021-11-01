@@ -35,9 +35,9 @@ DRAW_E_ANIMATION:
   sw t3, 0(t2) # colocando a default musica na musica atual
   lw t0 (t3)
   lw t1, 4(t3)
-  ble t1, t0, PROX1
+  ble t1, t0, PROX666
   li t1, 1
-PROX1:  
+PROX666:  
   addi t2, t1, 1
   sw t2, 4(t3) 
   slli t1, t1, 2
