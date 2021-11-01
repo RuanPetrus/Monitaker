@@ -1,0 +1,22 @@
+MOVIMENTO:
+W - Cima
+A - Esquerda
+S - Baixo
+D - Direita
+
+MENUS:
+1 - Primeira opção
+2 - Segunda opção
+...
+Espaço - Confirmar opção
+
+OUTROS:
+ESC - Pausar
+P - Pular para o diálogo
+R - Reiniciar fase
+
+INSTRUÇÕES:
+- Arraste "main.asm" para "fpgrars-x86_64-pc-windows-gnu.exe" caso esteja no Windows ou para "fpgrars" caso esteja usando Linux
+- Caso arrastar não seja possível, abra um terminal e execute `<executável do seu sistema operacional> main.asm`
+
+Se os executáveis fornecidos no zip não funcionam, tente baixar do repositório oficial do FPGRARS (https://github.com/LeoRiether/FPGRARS)
