@@ -14,27 +14,22 @@ cd src
 chmod +x fpgrars
 ./fpgrars main.asm
 ```
-On Windows:
-Open `src` in Windows Explorer and drag `main.asm` to the FPGRARS binary
-```
-./fpgrars main.asm
-```
+5. On Windows, 
+open `src` in Windows Explorer and drag `main.asm` to the FPGRARS binary
+
 
 ## Controls
-### Movement
-W - Up
-A - Left
-S - Down
-D - Right
 
-### Menus
-1 - First option
-2 - Second option
-3 - Third option
-...
-SPACE - Confirm option
-
-### Others
-ESC - Pause
-P - Skip to dialogue
-R - Reset current stage
+|Key    | Function |
+|-------|---------|
+|W   | Up|
+|A   | Left|
+|S   | Down|
+|D   | Right|
+|1   | First option|
+|2   | Second option|
+|3   | Third option|
+|SPACE | Confirm option|
+|ESC  | Pause Menu|
+|P   | Skip to dialogue|
+|R   | Reset current stage|
