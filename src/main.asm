@@ -147,7 +147,7 @@ M_LOOP:
 .include "SYSTEMv21.s"
 
 .data
-.include "../sprites/player.data"
+#MISC
 .include "../sprites/misc/floor.data"
 .include "../sprites/misc/key.data"
 .include "../sprites/misc/door.data"
@@ -156,12 +156,10 @@ M_LOOP:
 .include "../sprites/misc/ColunaBaixo.data"
 .include "../sprites/misc/ColunaCima.data"
 .include "../sprites/misc/parede.data"
-.include "../sprites/wall.data"
-.include "../sprites/enemy.data"
-.include "../sprites/black.data"
-.include "animation.data"
-.include "../sprites/hud.data"
+.include "../sprites/misc/black.data"
+.include "../sprites/misc/hud.data"
 
+#MORTE E RESET
 .include "../sprites/menu/MORTE.data"
 .include "../sprites/menu/reset_and_sucess_pass.data"
 
@@ -206,4 +204,6 @@ M_LOOP:
 .include "../sprites/menu/pause1.data"
 .include "../sprites/menu/pause2.data"
 
-.text
+#ANIMACAO E MUSICA
+.include "animation.data"
+.include "songs.data"

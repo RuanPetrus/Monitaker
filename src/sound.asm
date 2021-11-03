@@ -22,8 +22,6 @@
 		#LOOP:	P_MUS			(3)
 		#	j LOOP
 
-.include "songs.data"
-
 .data
 D_BG_MUSIC:	.word 0		#Store de adress of the Default back ground music
 
