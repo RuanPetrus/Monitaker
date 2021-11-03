@@ -1,4 +1,4 @@
-# Helltaker - RISCV
+# MONITAKER - RISCV
 A university assignment project to recreate Helltaker in RISC-V Assembly using [FPGRARS](https://github.com/LeoRiether/FPGRARS).
 
 ## How to run
