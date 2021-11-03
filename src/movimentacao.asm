@@ -18,14 +18,17 @@
 	#	espinhos = 9	#
 	###############################
 	
-# Movimentacao - Up/Down - Entre linhas
+# Movimentacao - Up/Down - Esntre linhas
+FIM_NOVO2:
+	j FIM
+
 MOV_UD:
 	lb t0,0(a2)		#Linha Origem  - t0 = indice da linha origem
 	add t1,t0,a0		#Linha Destino - t1 = indice da linha destino
 	#Verificacoess de limites de LINHAS da matriz:
-	bltz t1,FIM		#verifica se o destino for menor que 0, ou seja, nada: n move
+	bltz t1,FIM_NOVO2		#verifica se o destino for menor que 0, ou seja, nada: n move
 	lw t5,0(a4)		#t5 = numero de linhas
-	bge t1,t5,FIM		#verifica se a posiï¿½ï¿½o de destino(t1) ï¿½ maior que o nï¿½ de linhas existentes e n move
+	bge t1,t5,FIM_NOVO2		#verifica se a posiï¿½ï¿½o de destino(t1) ï¿½ maior que o nï¿½ de linhas existentes e n move
 	# Origem:
 	lb t2,1(a2)		#Coluna Origem: t2 = indice da coluna onde o jogador esta
 	slli t2,t2,2		#t2 = t2 * 4, p/ encontrar a coluna na word
@@ -46,13 +49,13 @@ MOV_UD:
 	beq t6, t4 MOV_UD_FREE	#Permite mover se tiver porta aberta
 	# Obstaculo: NAO MOVE
 	li t4, 8		#Parede
-	beq t6, t4, FIM	
+	beq t6, t4, FIM_NOVO2	
 	li t4, 10		#Parede
-	beq t6, t4, FIM	# N move
+	beq t6, t4, FIM_NOVO2	# N move
 	li t4, 11			#Parede
-	beq t4 t6 FIM		# N move
+	beq t4 t6 FIM_NOVO2		# N move
 	li t4, 12			#Parede
-	beq t4 t6 FIM		# N move
+	beq t4 t6 FIM_NOVO2		# N move
 	# Empuroes
 	li t4 6			#Bloco
 	beq t4 t6 MOV_UD_EMPU	#Empurra objeto
@@ -69,7 +72,10 @@ MOV_UD:
 	beq t4 t6 OPEN_DOOR_UD	
 	#Passou de fase
 	li t4, 2
-	beq t4, t6 INIT_O
+	beq t4, t6 INTER_INIT_O
+
+INTER_INIT_O:
+	j INIT_O
 COLETA_UD:
 	add t6,t2,t3		# t6 = endereco original (linhax + offset da coluna)
 	bgt s8 zero THORN_UD	# verifica se existia um espinho de onde o jogador estÃ¡ se retirando
@@ -79,11 +85,11 @@ COLETA_UD:
 	li s11, 1			# Coleta chave
 	j MOV_EFETIVADO	
 OPEN_DOOR_UD:
-	beqz s11 FIM		#Verifica se a chave foi coletada
+	beqz s11 FIM_NOVO2		#Verifica se a chave foi coletada
 	li t4 5			
 	sw t4,0(t5)		#com chave, abre porta
 	li s11, 0
-	j FIM
+	j FIM_NOVO2
 	
 DANO_UD:	#Dano Espinho -> Mov efetivado = (-2)
 	add t6,t2,t3		# t6 = endereco original (linhax + offset da coluna)
@@ -141,7 +147,7 @@ P2_EMPU_UD:
 	beq t4 t6 EMPU_UD_FREE
 	li t4 9
 	beq t4 t6 EMPU_UD_FREE
-	j FIM
+	j FIM_NOVO2
 EMPU_UD_KILL:
 	# Verificar se o inimigo empurado esta diante de uma kill
 	li t4 8 
@@ -195,9 +201,9 @@ MOV_LR:
 	add t1,t0,a0		#Coluna de Destino - t1 = indice da coluna destino (Coluna de Origem += 1 (ou -1))
 	
 	#Verificacoess de limites de COLUNAS da matriz:
-	bltz t1,FIM		#verifica se o destino for menor que 0, ou seja, nada: n move
+	bltz t1,FIM_NOVO2		#verifica se o destino for menor que 0, ou seja, nada: n move
 	lw t5,4(a4)		#t5 = quantidade de colunas na matriz
-	bge t1,t5,FIM		#verifica se a posiï¿½ï¿½o de destino(t1) ï¿½ maior que o nï¿½ de coluna existentes: n move
+	bge t1,t5,FIM_NOVO2		#verifica se a posiï¿½ï¿½o de destino(t1) ï¿½ maior que o nï¿½ de coluna existentes: n move
 	#Origem:
 	lb t2,0(a2)		#Linha de Origem - t2 = indice da linha onde o jogador esta
 	slli t2,t2,2		#t2= endereï¿½o da linha, como cada linha e um word, multiplica o indice por 4
@@ -215,13 +221,13 @@ MOV_LR:
 	beq t4 t6 MOV_LR_FREE	#Permite mover se tiver porta aberta
 	#Obstaculo: NAO MOVE
 	li t6 8			#Parede
-	beq t4 t6 FIM		# N move
+	beq t4 t6 FIM_NOVO2		# N move
 	li t6 10			#Parede
-	beq t4 t6 FIM		# N move
+	beq t4 t6 FIM_NOVO2		# N move
 	li t6 11			#Parede
-	beq t4 t6 FIM		# N move
+	beq t4 t6 FIM_NOVO2		# N move
 	li t6 12			#Parede
-	beq t4 t6 FIM		# N move
+	beq t4 t6 FIM_NOVO2		# N move
 	#Empuroes
 	li t6 6			#Bloco
 	beq t4 t6 MOV_LR_EMPU	#Empurra objeto
@@ -238,7 +244,7 @@ MOV_LR:
 	beq t4 t6 OPEN_DOOR_LR	#Verificar p/ abertura de porta
 	#Passou de fase
 	li t6, 2
-	beq t4 t6 INIT_O
+	beq t4 t6 INTER_INIT_O
 COLETA_LR:
 	slli t4,t0,2		# t4 = endereÃ¯Â¿Â½o de coluna de origem
 	add t4,t4,t3		# t4 = endereco original do jogador
@@ -249,14 +255,14 @@ COLETA_LR:
 	li s11 1			# Coleta chave
 	j MOV_EFETIVADO		
 OPEN_DOOR_LR:
-	beqz s11 FIM		#Verifica se a chave foi coletada
+	beqz s11 FIM_NOVO2		#Verifica se a chave foi coletada
 	li t6 5
 	sw t6,0(t2)		#Transforma porta fechada em aberta
 	li s11 0			#com chave, abre porta
 	la t0, Current_Player_Animation
   	la t1, Player_Door_Animation
   	sw t1, (t0)
-	j FIM
+	j FIM_NOVO2
 DANO_LR:
 	slli t4,t0,2		# t4 = endereï¿½o de coluna de origem
 	add t4,t4,t3		# t4 = endereco original do jogador
@@ -311,7 +317,7 @@ P2_EMPU_LR:
 	beq t4 t6 EMPU_LR_FREE
 	li t6 9
 	beq t4 t6 EMPU_LR_FREE
-	j FIM
+	j FIM_NOVO2
 EMPU_LR_KILL:
 	# Verificar se o inimigo empurado esta diante de uma kill
 	li t6 8 			#Fatores de kill: paredes, blocos, espinhos e portasF
@@ -406,7 +412,7 @@ MOV_EFETIVADO:
 	ecall			# chamada cod acima
 	
 
-	j FIM	
+	j FIM_NOVO2	
 
 SOFREU_DANO_UD:
 	addi s5,s5,-1		# A cada movimento: total de movimentos disponiveis - 1

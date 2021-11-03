@@ -3,7 +3,6 @@ LAST_TILE:	.word 0
 
 .text
 .include "MACROSv21.s"
-
 # REGISTRADORES
 # s0 = front buffer
 # s1 = back buffer
@@ -83,6 +82,7 @@ INIT_HUD:
 	call PRINT_INT
 	li s8, 0
 	# Game loop
+	
 G_LOOP:
 	jal a6,KEY1	
 	jal P_MUS
@@ -130,17 +130,21 @@ M_LOOP:
 
 	
 	
-.include "tiles.asm"
 .include "buffer.asm"
 .include "render.asm"
 .include "sound.asm"
-.include "movimentacao.asm"
 .include "poling01.asm"
+.include "movimentacao.asm"
 .include "menu-blocking.asm"
+.include "tiles.asm"
 .include "correlate.asm"
 .include "animation.asm"
 .include "map_manager.asm"
 .include "historyAnimation.asm"
+.include "print_int.asm"
+.include "board.asm"
+.include "mapas.asm"
+.include "SYSTEMv21.s"
 
 .data
 .include "../sprites/player.data"
@@ -203,5 +207,3 @@ M_LOOP:
 .include "../sprites/menu/pause2.data"
 
 .text
-.include "print_int.asm"
-.include "SYSTEMv21.s"

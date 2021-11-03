@@ -76,7 +76,7 @@ ITER_X2:
   	la t2, MAP_WIDTH2
   	lb t2, (t2)
 
-  	bge t1,t2,INIT_G
+  	bge t1,t2,INTER_INIT_G
 	sb zero,1(t0)
 	addi t1, t1, 1
   	sb t1, 0(t0)
@@ -101,7 +101,7 @@ ITER_Y2:
   	lb t2, 0(t2)
 
 	j ITER_Y2
-		
+INTER_INIT_G:		
 	j INIT_G # O primeiro mapa e carregado antes dos INIT_GS do jogo
 
 

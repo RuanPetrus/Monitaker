@@ -6,12 +6,12 @@ OPCAO: .word 1
 KEY2: 	csrr t1, time			# t1 = current time
 	sub t0, t1, s6
 	li t2, 100
-	blt t0, t2, FIM
+	blt t0, t2, FIM_NOVO
 	
 	li t1,0xFF200000		# carrega o endere�o de controle do KDMMIO
  	lw t0,0(t1)			# Le bit de Controle Teclado
    	andi t0,t0,0x0001		# mascara o bit menos significativo
-   	beq t0,zero,FIM			# n�o tem tecla pressionada ent�o volta ao loop
+   	beq t0,zero,FIM_NOVO			# n�o tem tecla pressionada ent�o volta ao loop
    	
    	csrr s6, time
    	
@@ -122,12 +122,12 @@ KEY3:
 	csrr t1, time			# t1 = current time
 	sub t0, t1, s6
 	li t2, 100
-	blt t0, t2, FIM
+	blt t0, t2, FIM_NOVO
 	
 	li t1,0xFF200000		# carrega o endere�o de controle do KDMMIO
  	lw t0,0(t1)			# Le bit de Controle Teclado
    	andi t0,t0,0x0001		# mascara o bit menos significativo
-   	beq t0,zero,FIM			# n�o tem tecla pressionada ent�o volta ao loop
+   	beq t0,zero,FIM_NOVO		# n�o tem tecla pressionada ent�o volta ao loop
    	
    	csrr s6, time
    	
@@ -159,12 +159,12 @@ KEY4:
 	csrr t1, time			# t1 = current time
 	sub t0, t1, s6
 	li t2, 100
-	blt t0, t2, FIM
+	blt t0, t2, FIM_NOVO
 	
 	li t1,0xFF200000		# carrega o endere�o de controle do KDMMIO
  	lw t0,0(t1)			# Le bit de Controle Teclado
    	andi t0,t0,0x0001		# mascara o bit menos significativo
-   	beq t0,zero,FIM			# n�o tem tecla pressionada ent�o volta ao loop
+   	beq t0,zero,FIM_NOVO		# n�o tem tecla pressionada ent�o volta ao loop
    	
    	csrr s6, time
    	
@@ -201,3 +201,6 @@ MAIN_MENU_O:
 
 SKIP_O:
 	j MAP_WIN
+
+FIM_NOVO:
+	j FIM

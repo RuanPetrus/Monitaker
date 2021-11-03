@@ -11,17 +11,32 @@ MAP_LOAD:
 	la t0, CUR_MAP
 	lb t1, (t0)
 	li t2, 0
-	beq t1, t2, MAPA01
+	beq t1, t2, INTER_MAPA01
 	li t2, 1
-	beq t1, t2, MAPA02
+	beq t1, t2, INTER_MAPA02
 	li t2, 2
-	beq t1, t2, MAPA03
+	beq t1, t2, INTER_MAPA03
 	li t2, 3
-	beq t1, t2, MAPA04
+	beq t1, t2, INTER_MAPA04
 	li t2, 4
-	beq t1, t2, MAPA05
+	beq t1, t2, INTER_MAPA05
 	li t2, 5
-	bge t1, t2, BEAT_GAME
+	bge t1, t2, INTER_BEAT_GAME
 
-.include "board.asm" # Matriz base
-.include "mapas.asm" # Labels com comandos que modificam a matriz
+INTER_MAPA01:
+	j MAPA01
+
+INTER_MAPA02:
+	j MAPA02
+
+INTER_MAPA03:
+	j MAPA03
+
+INTER_MAPA04:
+	j MAPA04
+
+INTER_MAPA05:
+	j MAPA05
+
+INTER_BEAT_GAME:
+	j BEAT_GAME
