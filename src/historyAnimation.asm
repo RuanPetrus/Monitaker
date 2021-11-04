@@ -1,5 +1,5 @@
 PRIMEIRAS_ANIMACOES:
-	la a0, alerta_inicial
+	la a0, alertainicial
 	li a1, 0
 	li a2, 0
 	call RENDER

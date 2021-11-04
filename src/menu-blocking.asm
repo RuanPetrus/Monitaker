@@ -64,9 +64,9 @@ OP3:
 ESCOLHE:
 	la t0, CUR_MAP
 	lb t1, (t0)
-	li t2, 4
-	beq t2, t1, CERTA
 	li t2, 5
+	beq t2, t1, CERTA
+	li t2, 6
 	beq t2, t1, FINAL_END
 
 	la t0, OPCAO
