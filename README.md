@@ -13,10 +13,10 @@ cd src
 6. On GNU/Linux run:
 ```
 chmod +x fpgrars
-./fpgrars main.asm
+./fpgrars main.s
 ```
 6. On Windows, 
-open `src` in Windows Explorer and drag `main.asm` to the FPGRARS binary
+open `src` in Windows Explorer and drag `main.s` to the FPGRARS binary
 
 
 ## Controls
