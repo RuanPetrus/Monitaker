@@ -79,6 +79,3 @@ P_NOTE:	lw t0, 8(s4)		#t0 = Note conter
 ST_MUS:	la t0, D_BG_MUSIC
 	lw s4, 0(t0)	
 	jr a0
-	
-	
-	

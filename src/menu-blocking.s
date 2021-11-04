@@ -24,8 +24,9 @@ KEY2: 	csrr t1, time			# t1 = current time
 	li t0, 0x20			#ENTER
 	beq t2, t0, ESCOLHE
 	j FIM
+# Opção 1
 OP1:
-	la a0, D_IMAGE1
+	la a0, D_IMAGE1 # Carregar imagem selecionada para opção 1
 	lw a0, (a0)
 	li a1, 0
 	li a2, 0
@@ -35,8 +36,9 @@ OP1:
 	li t1, 1
 	sw t1, (t0)
 	jr a6
+# Opção 2
 OP2:
-	la a0, D_IMAGE2
+	la a0, D_IMAGE2 # Carregar imagem selecionada para opção 2
 	lw a0, (a0)
 	li a1, 0
 	li a2, 0
@@ -47,9 +49,9 @@ OP2:
 	li t1, 2
 	sw t1, (t0)
 	jr a6
-
+# Opção 3
 OP3:
-	la a0, D_IMAGE_WIN
+	la a0, D_IMAGE_WIN # Carregar imagem selecionada para opção 3
 	lw a0, (a0)
 	li a1, 0
 	li a2, 0
@@ -61,11 +63,14 @@ OP3:
 	sw t1, (t0)
 	jr a6
 
+# Definir se opção escolhida no diálogo foi a escolha certa ou errada
 ESCOLHE:
-	la t0, CUR_MAP
-	lb t1, (t0)
-	li t2, 5
+	la t0, CUR_MAP # Mapa atual
+	lb t1, (t0) # t1 = índice mapa atual
+	# Testar se estamos na última fase (todas as opções são certas)
+	li t2, 5 # t2 = comparação
 	beq t2, t1, CERTA
+	# Final do jogo (sair)
 	li t2, 6
 	beq t2, t1, FINAL_END
 
@@ -88,6 +93,7 @@ CERTA:
 
 	li t0, 3000
 	csrr t1, time
+# Delay para próxima fase
 TEMPO3:
 	csrr t2, time
 	sub t2, t2, t1
@@ -104,6 +110,7 @@ ERRADA:
 
 	li t0, 3000
 	csrr t1, time
+# Delay para perder
 TEMPO4:
 	csrr t2, time
 	sub t2, t2, t1
@@ -111,13 +118,11 @@ TEMPO4:
 	
 	j SEFODEU
 	
-	
-	
 FINAL_END:
-	li a7, 10
+	li a7, 10 # Fechar programa
 	ecall
 
-
+# Receber input blocking (menus, diálogos, etc.)
 KEY3: 	
 	csrr t1, time			# t1 = current time
 	sub t0, t1, s6
@@ -141,7 +146,7 @@ KEY3:
 	beq t2, t0, SELECIONADO
 	j FIM
 
-
+# Seleção do menu principal
 SELECIONADO:
 	la t0, OPCAO
 	lw t0, (t0)
@@ -149,12 +154,11 @@ SELECIONADO:
 	beq t1, t0, NOVOJOGO
 	j FINAL_END
 
-
-
+# Iniciar jogo
 NOVOJOGO:
 	j HISTORIA
 
-
+# Opções menu de pausa
 KEY4: 	
 	csrr t1, time			# t1 = current time
 	sub t0, t1, s6
@@ -181,6 +185,7 @@ KEY4:
 	j FIM
 
 
+# Seleções menu de pausa
 SELECIONADO2:
 	la t0, OPCAO
 	lw t0, (t0)
@@ -193,6 +198,7 @@ SELECIONADO2:
 	j RESUME_O
 
 
+# Opções do menu de pausa
 RESUME_O:
 	j INIT_HUD
 
