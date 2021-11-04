@@ -200,7 +200,9 @@ SELECIONADO2:
 
 # Opções do menu de pausa
 RESUME_O:
-	j INIT_HUD
+# O menu de pausa redefine as imagens dos diálogos para o próprio menu,
+# então precisamos recarregar elas.
+	j RELOAD_DIALOGUE # Pula para INIT_HUD no final
 
 MAIN_MENU_O:
 	j INIT_I
