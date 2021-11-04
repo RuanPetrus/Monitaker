@@ -31,6 +31,8 @@ jal a6, PRIMEIRAS_ANIMACOES
 
 
 INIT_I:
+	la t0, CUR_MAP
+	sw zero, (t0)
 
 	la a1, MENU01
 	la a0, MENU02
@@ -85,7 +87,7 @@ INIT_HUD:
 	
 G_LOOP:
 	jal a6,KEY1	
-	jal P_MUS
+	#jal P_MUS
 	jal a6, GLOBAL_DRAW
 	j G_LOOP
 
@@ -184,12 +186,17 @@ M_LOOP:
 .include "../sprites/menu/dialog42.data"
 
 #Dialogos MAP5
+.include "../sprites/menu/dialog60.data"
+.include "../sprites/menu/dialog61.data"
+.include "../sprites/menu/dialog63.data"
+
+#Dialogos MAP6
 .include "../sprites/menu/dialog50.data"
 .include "../sprites/menu/dialog51.data"
 
 #MENUS
 .include "../sprites/menu/creditosfinais.data"
-.include "../sprites/menu/alerta_inicial.data"
+.include "../sprites/menu/alertainicial.data"
 .include "../sprites/menu/MENU01.data"
 .include "../sprites/menu/MENU02.data"
 
