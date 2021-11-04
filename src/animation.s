@@ -1,9 +1,10 @@
+#Desenhar a Animação do player
 DRAW_P_ANIMATION:
 	la t2,Current_Player_Animation #endereço que segura o enderço da musica atual
   lw t3, 0(t2) # musica que vai tocar atual
   lw t0, (t3)   #Tamanho da animatição
   lw t1, 4(t3)  #Posicao atual da animacao
-  ble t1, t0, PROX
+  ble t1, t0, PROX # Conferindo para ver se a animação acabou
   li t1, 1
   sw t1, 4(t3)
   la t3, Player_Stop_Animation
@@ -12,6 +13,8 @@ DRAW_P_ANIMATION:
   lw t1, 4(t3)
   ble t1, t0, PROX
   li t1, 1
+
+# Desenhando a sprite
 PROX:  
   addi t2, t1, 1
   sw t2, 4(t3) 
@@ -23,6 +26,8 @@ PROX:
   j DRAW_TILE
 
    
+
+#Desenhando a animação do inimigo   
 DRAW_E_ANIMATION:
 	la t2,Current_Skelet_Animation #endereço que segura o enderço da musica atual
   lw t3, 0(t2) # musica que vai tocar atual
@@ -35,8 +40,10 @@ DRAW_E_ANIMATION:
   sw t3, 0(t2) # colocando a default musica na musica atual
   lw t0 (t3)
   lw t1, 4(t3)
-  ble t1, t0, PROX666
+  ble t1, t0, PROX666 # Confirindo se a animção acabou
   li t1, 1
+  
+# Desenhando a sprite
 PROX666:  
   addi t2, t1, 1
   sw t2, 4(t3) 
@@ -50,12 +57,13 @@ PROX666:
   xori a3, a3, 1
   j DRAW_TILE
 
+# Desenhando a animção da garota demônio
 DRAW_D_ANIMATION:
 	la t2, Current_Demon_Animation #endereço que segura o enderço da musica atual
   lw t3, 0(t2) # musica que vai tocar atual
   lw t0, (t3)   #Tamanho da animatição
   lw t1, 4(t3)  #Posicao atual da animacao
-  ble t1, t0, PROX1
+  ble t1, t0, PROX1 # Conferindo para ver se a animação terminou
   li t1, 1
   sw t1, 4(t3)
   la t3, Demon_Stop_Animation
@@ -64,6 +72,7 @@ DRAW_D_ANIMATION:
   lw t1, 4(t3)
   ble t1, t0, PROX1
   li t1, 1
+#Desenhando a sprite
 PROX1:  
   addi t2, t1, 1
   sw t2, 4(t3) 

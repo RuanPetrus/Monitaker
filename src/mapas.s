@@ -1,4 +1,5 @@
 .data
+#Mapa 01
 MAP1LINHA0:	.word 11,11,10,10,10,11,11,11
 MAP1LINHA1:	.word 11,10, 8, 8, 8, 0, 1,11
 MAP1LINHA2:	.word 11, 8, 0, 0, 7, 0, 0,11
@@ -8,6 +9,7 @@ MAP1LINHA5:	.word  8, 0, 6, 0, 0, 6, 0, 8
 MAP1LINHA6:	.word  8, 0, 6, 0, 6, 0, 2,11
 MAP1LINHA7:	.word 11,11,11,11,11,11,11,11
 
+#Mapa 02
 MAP2LINHA0:	.word 10,11,11,11,11,10,11,11
 MAP2LINHA1:	.word  8, 0, 0, 0, 0, 8,11,11
 MAP2LINHA2:	.word  8, 7,11, 9, 9, 0, 0,11
@@ -17,6 +19,7 @@ MAP2LINHA5:	.word  1, 0,11,10, 0, 7, 0, 8
 MAP2LINHA6:	.word 11,11,11, 8, 2, 0, 7,11
 MAP2LINHA7:	.word 11,11,11,11,11,11,11,11
 
+#Mapa 03
 MAP3LINHA0:	.word 11,11,10,11,11,11,11,11
 MAP3LINHA1:	.word 11,11, 8, 0, 0, 2, 0,10
 MAP3LINHA2:	.word 11,11, 8,12,12,12, 4, 8
@@ -26,6 +29,7 @@ MAP3LINHA5:	.word 11,10, 0, 0, 7, 9, 9,12
 MAP3LINHA6:	.word  3, 8, 9,12, 9,12, 0,11
 MAP3LINHA7:	.word  0, 0, 0, 0, 0, 7, 0,11
 
+#Mapa 04
 MAP4LINHA0:	.word 11,11,11,11,11,11,10,11
 MAP4LINHA1:	.word 11,11,11,11, 2, 0, 8,10
 MAP4LINHA2:	.word 11,11,11,10, 0, 4, 0, 8
@@ -35,6 +39,7 @@ MAP4LINHA5:	.word 10, 0,11, 7, 0, 0, 1,11
 MAP4LINHA6:	.word  8, 9,11,12, 9,11,11,11
 MAP4LINHA7:	.word 12, 9, 9, 9, 9,11,11,11
 
+#Mapa 05
 MAP5LINHA0:	.word 11, 10, 0, 1, 0 ,11,11,11
 MAP5LINHA1:	.word 11, 8, 9 , 6, 6, 10,10,11
 MAP5LINHA2:	.word  11, 0, 0, 0, 3, 8, 8,10
@@ -44,6 +49,7 @@ MAP5LINHA5:	.word  11, 11, 0, 0, 6, 0, 7, 12
 MAP5LINHA6:	.word 11, 11, 11, 11, 12, 4, 6, 0
 MAP5LINHA7:	.word 11, 11, 11, 11, 12, 0, 2,11
 
+# Mapa 06
 MAP6LINHA0:	.word 11,11,11,11,11,10,11,11
 MAP6LINHA1:	.word 10,11, 0, 2, 6, 8,10,11
 MAP6LINHA2:	.word  8,10, 0, 0, 0, 0, 8,11
@@ -64,6 +70,7 @@ CURRENT_MAP: .word MAP_1
 XY2: .byte -1, 0  
 MAP_WIDTH2: .byte 7
 .text
+# Coleta o valor na matriz
 GET_V2:	
 	# a1, a2 = x, y
 	slli t1,a1,2
@@ -76,6 +83,7 @@ GET_V2:
 	lw a3,(t0)
 	ret
 
+# Itera toda a matriz do mapa dado e salve na matriz principal
 MAP:
 	la t0, XY2
   	li t3, -1
@@ -111,12 +119,18 @@ ITER_Y2:
   	lb t2, 0(t2)
 
 	j ITER_Y2
+	
+
 INTER_INIT_G:		
 	j INIT_G # O primeiro mapa e carregado antes dos INIT_GS do jogo
 
 
+
+# Carrega informações do mapa atual para ser jogada
+# Ex: Numero de movimentos, opção do dialogo, localização do player, sprites para
+# o dialogo.
  MAPA01:	
-	# Configurar turnos
+
 	la t0, CURRENT_MAP
 	la t1, MAP_1
 	sw t1, (t0)
@@ -267,8 +281,8 @@ INTER_INIT_G:
 	
 	j MAP
 
+# Quando se chega no final do jogo
 BEAT_GAME:
-
 	la a0, creditosfinais
 	la a1, creditosfinais
 	la a2, creditosfinais
@@ -279,25 +293,3 @@ BEAT_GAME:
 
 	li a7, 10
 	ecall
-
-CLEAR_MATRIX:
-	mv a6, ra
-	li a0, 0 # Constante: Encher de chaos
-	li a1, -1 # x (comeca com -1 por causa da logica do loop)
-	li a2, 0 # y
-	# OBS: SET_V usa t0, 1 e 2, entao vamos com o 3.
-	li t3, 7 # Constante: Tamanho do mapa (largura e altura)
-ITER_HOR:
-	bge a1, t3, CLEAR_MATRIX_END # SAIDA
-	li a2, 0
-	addi a1, a1, 1
-ITER_VER:
-	bgt a2, t3, ITER_HOR
-	call SET_V
-	addi a2, a2, 1
-	j ITER_VER
-
-CLEAR_MATRIX_END:
-	mv ra, a6
-	ret
-

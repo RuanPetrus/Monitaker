@@ -1,3 +1,5 @@
+
+#Toca as primeiras animações por um tempo determinado
 PRIMEIRAS_ANIMACOES:
 	la a0, alertainicial
 	li a1, 0
@@ -15,6 +17,7 @@ TEMPO_PA:
     ret
 
 
+#Desenha as animções de história 
 D_HISTORIA:
 	la a0, history0
 	li a1, 0

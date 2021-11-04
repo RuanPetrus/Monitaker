@@ -1,3 +1,6 @@
+# Exemplo de criação de Label
+# LABEL: .word Quantidade de sprites, 1, sprite1, sprite2 ...
+
 ###########               PLAYER             #############
 Current_Player_Animation: .word Player_Stop_Animation
 Player_Stop_Animation: .word 11, 1, heroStop1, heroStop2, heroStop3, heroStop4, heroStop5, heroStop6, heroStop7, heroStop8, heroStop9, heroStop10, heroStop11   

@@ -2,11 +2,14 @@
 CUR_MAP: .byte 0 # Index do mapa atual
 
 .text
+# Adiciona 1 ao mapa atual
 MAP_WIN: # CUR_MAP += 1
 	la t0, CUR_MAP
 	lb t1, (t0)
 	addi t1, t1, 1
 	sb t1, (t0)
+	
+# Chama o mapa atual
 MAP_LOAD:
 	la t0, CUR_MAP
 	lb t1, (t0)
