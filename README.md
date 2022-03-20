@@ -34,3 +34,10 @@ open `src` in Windows Explorer and drag `main.s` to the FPGRARS binary
 |ESC  | Pause Menu|
 |P   | Skip to dialogue|
 |R   | Reset current stage|
+
+
+
+Autores: 
+- Ruan Petrus https://github.com/RuanPetrus  
+- Gabriel Felix https://github.com/gabfelix
+- Nicolas Faganelly https://github.com/nfaganelly
