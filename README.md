@@ -36,6 +36,13 @@ open `src` in Windows Explorer and drag `main.s` to the FPGRARS binary
 |R   | Reset current stage|
 
 
+## Images
+
+![Game](https://github.com/RuanPetrus/isc-project/blob/Master/images/game.png)
+
+![Menu](https://github.com/RuanPetrus/isc-project/blob/Master/images/menu.png)
+
+![Dialog](https://github.com/RuanPetrus/isc-project/blob/Master/images/dialog.png)
 
 Autores: 
 - Ruan Petrus https://github.com/RuanPetrus  
