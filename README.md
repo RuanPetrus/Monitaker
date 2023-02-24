@@ -1,5 +1,12 @@
 # Monitaker
 This is a game based on [Helltaker](https://en.wikipedia.org/wiki/Helltaker).
+
+## How to Run
+Clone te repo, download [FPGRARS](https://github.com/LeoRiether/FPGRARS) and run:
+```sh
+fpgrars ./src/main.s
+```
+
 ## Showcase
 ### Level 3
 ![](https://github.com/RuanPetrus/Monitaker/blob/921daa713a46b888e0a3bd550755530bfccb629a/images/helltakerGif1.gif)
