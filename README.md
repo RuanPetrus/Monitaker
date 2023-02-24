@@ -1,26 +1,11 @@
-# MONITAKER - RISCV
-A university assignment project to recreate Helltaker in RISC-V Assembly using [FPGRARS](https://github.com/LeoRiether/FPGRARS).
+# Monitaker
+This is a game based on [Helltaker](https://en.wikipedia.org/wiki/Helltaker).
+## Showcase
 
-## How to run
-1. Download the latest release version
-2. Go to the [FPGRARS repository](https://github.com/LeoRiether/FPGRARS)
-3. Download the appropriate version for your OS (Windows, Mac, GNU/Linux)
-4. Place it in the `src` directory
-5. Change directory to `src`
-```
-cd src
-```
-6. On GNU/Linux run:
-```
-chmod +x fpgrars
-./fpgrars main.s
-```
-6. On Windows, 
-open `src` in Windows Explorer and drag `main.s` to the FPGRARS binary
-
+## Disclaimer
+This is a game written in Assembly Risc-V made for a custom Risc-V processor which runs on a FPGA board. You can also run in a simulator such as [FPGRARS](https://github.com/LeoRiether/FPGRARS).
 
 ## Controls
-
 |Key    | Function |
 |-------|---------|
 |W   | Up|
@@ -34,17 +19,3 @@ open `src` in Windows Explorer and drag `main.s` to the FPGRARS binary
 |ESC  | Pause Menu|
 |P   | Skip to dialogue|
 |R   | Reset current stage|
-
-
-## Images
-
-![Game](https://github.com/RuanPetrus/isc-project/blob/Master/images/game.png)
-
-![Menu](https://github.com/RuanPetrus/isc-project/blob/Master/images/menu.png)
-
-![Dialog](https://github.com/RuanPetrus/isc-project/blob/Master/images/dialog.png)
-
-Autores: 
-- Ruan Petrus https://github.com/RuanPetrus  
-- Gabriel Felix https://github.com/gabfelix
-- Nicolas Faganelly https://github.com/nfaganelly
