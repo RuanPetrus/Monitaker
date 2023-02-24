@@ -1,6 +1,10 @@
 # Monitaker
 This is a game based on [Helltaker](https://en.wikipedia.org/wiki/Helltaker).
 ## Showcase
+### Level 3
+![](https://github.com/RuanPetrus/Monitaker/blob/921daa713a46b888e0a3bd550755530bfccb629a/images/helltakerGif1.gif)
+### Level 4
+![](https://github.com/RuanPetrus/Monitaker/blob/921daa713a46b888e0a3bd550755530bfccb629a/images/helltakerGif2.gif)
 
 ## Disclaimer
 This is a game written in Assembly Risc-V made for a custom Risc-V processor which runs on a FPGA board. You can also run in a simulator such as [FPGRARS](https://github.com/LeoRiether/FPGRARS).
